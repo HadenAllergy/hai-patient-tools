@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haden Allergy — Hives & Swelling Questionnaire</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B3A5C; --blue: #2E75B6; --blue-light: #EBF3FB; --blue-mid: #C5DDF4;
+    --gold: #C8913A; --gold-light: #FDF6EC; --red-flag: #C0392B; --red-light: #FDECEA;
+    --green: #1E7A4A; --green-light: #EAF7EF; --gray-100: #F7F8FA; --gray-200: #EDEEF2;
+    --gray-400: #9BA3AF; --gray-600: #5A6272; --gray-800: #2D3142; --text: #1E2330;
+    --serif: 'Libre Baskerville', Georgia, serif; --sans: 'Source Sans 3', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--gray-100); color: var(--text); min-height: 100vh; font-size: 16px; line-height: 1.6; }
+  .site-header { background: var(--navy); color: white; padding: 20px 24px; display: flex; align-items: center; gap: 16px; border-bottom: 3px solid var(--gold); }
+  .logo-mark { width: 44px; height: 44px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--navy); flex-shrink: 0; }
+  .header-text h1 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; }
+  .header-text p { font-size: 0.8rem; opacity: 0.7; font-weight: 300; margin-top: 2px; }
+  .progress-bar-wrap { background: var(--navy); padding: 0 24px 16px; }
+  .progress-track { background: rgba(255,255,255,0.15); height: 4px; border-radius: 2px; overflow: hidden; }
+  .progress-fill { background: var(--gold); height: 100%; border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-label { color: rgba(255,255,255,0.6); font-size: 0.75rem; margin-top: 6px; font-weight: 300; }
+  .main { max-width: 680px; margin: 0 auto; padding: 24px 16px 80px; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+  .intro-card { background: white; border-radius: 12px; padding: 32px 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); border-top: 4px solid var(--navy); }
+  .intro-card h2 { font-family: var(--serif); font-size: 1.5rem; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+  .intro-card .subtitle { color: var(--gray-600); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; }
+  .intro-note { background: var(--blue-light); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 14px 16px; font-size: 0.88rem; color: var(--navy); margin-bottom: 24px; line-height: 1.5; }
+  .time-estimate { display: flex; align-items: center; gap: 8px; color: var(--gray-600); font-size: 0.85rem; margin-bottom: 28px; }
+  .btn-primary { background: var(--navy); color: white; border: none; border-radius: 8px; padding: 14px 28px; font-family: var(--sans); font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; letter-spacing: 0.02em; transition: background 0.2s; }
+  .btn-primary:hover { background: #254d7a; }
+  .section-header { background: var(--navy); color: white; border-radius: 10px 10px 0 0; padding: 16px 20px; }
+  .section-header h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; }
+  .section-header p { font-size: 0.82rem; opacity: 0.7; margin-top: 3px; font-weight: 300; }
+  .question-card { background: white; border-radius: 10px; padding: 22px 20px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); border: 1px solid var(--gray-200); }
+  .question-card:first-of-type { border-radius: 0 0 10px 10px; margin-top: 0; }
+  .q-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
+  .q-text { font-size: 1rem; font-weight: 500; color: var(--gray-800); margin-bottom: 16px; line-height: 1.5; }
+  .q-definition { font-size: 0.82rem; color: var(--gray-600); background: var(--gray-100); padding: 8px 12px; border-radius: 6px; margin-bottom: 14px; font-style: italic; }
+  .choices { display: flex; flex-direction: column; gap: 8px; }
+  .choice-item { display: flex; align-items: flex-start; gap: 12px; padding: 11px 14px; border: 1.5px solid var(--gray-200); border-radius: 8px; cursor: pointer; transition: border-color 0.15s, background 0.15s; font-size: 0.95rem; line-height: 1.4; }
+  .choice-item:hover { border-color: var(--blue); background: var(--blue-light); }
+  .choice-item input { margin-top: 2px; flex-shrink: 0; accent-color: var(--navy); width: 16px; height: 16px; }
+  .choice-item.selected { border-color: var(--navy); background: var(--blue-light); font-weight: 500; }
+  .text-input { width: 100%; border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 11px 14px; font-family: var(--sans); font-size: 0.95rem; color: var(--text); transition: border-color 0.2s; background: white; }
+  .text-input:focus { outline: none; border-color: var(--blue); }
+  .date-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .date-row select { flex: 1; min-width: 80px; border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 10px 12px; font-family: var(--sans); font-size: 0.9rem; background: white; cursor: pointer; }
+  .bool-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .bool-btn { padding: 12px; border: 1.5px solid var(--gray-200); border-radius: 8px; background: white; font-family: var(--sans); font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.15s; text-align: center; }
+  .bool-btn:hover { border-color: var(--blue); background: var(--blue-light); }
+  .bool-btn.selected-yes { border-color: var(--navy); background: var(--navy); color: white; }
+  .bool-btn.selected-no { border-color: var(--gray-600); background: var(--gray-200); color: var(--gray-800); }
+  .nav-row { display: flex; gap: 12px; margin-top: 24px; align-items: center; }
+  .btn-back { background: none; border: none; color: var(--gray-600); font-family: var(--sans); font-size: 0.9rem; cursor: pointer; padding: 10px 0; }
+  .btn-back:hover { color: var(--navy); }
+  .btn-next { flex: 1; }
+  .section-divider { display: flex; align-items: center; gap: 12px; margin: 28px 0 16px; color: var(--gray-400); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
+  .results-header { background: var(--navy); border-radius: 12px; padding: 28px 24px; color: white; margin-bottom: 20px; }
+  .results-header h2 { font-family: var(--serif); font-size: 1.4rem; margin-bottom: 6px; }
+  .results-header p { font-size: 0.88rem; opacity: 0.75; }
+  .emergency-banner { background: var(--red-flag); color: white; border-radius: 10px; padding: 18px 20px; margin-bottom: 20px; display: none; }
+  .emergency-banner.visible { display: block; }
+  .emergency-banner h3 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 8px; }
+  .emergency-banner ul { padding-left: 20px; font-size: 0.92rem; line-height: 1.7; }
+  .handout-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); border: 1px solid var(--gray-200); border-left: 4px solid var(--blue); }
+  .handout-card h4 { font-family: var(--serif); font-size: 1rem; color: var(--navy); margin-bottom: 6px; }
+  .handout-card p { font-size: 0.88rem; color: var(--gray-600); line-height: 1.5; }
+  .handout-tag { display: inline-block; background: var(--blue-light); color: var(--blue); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-top: 8px; }
+  .summary-card { background: white; border-radius: 10px; padding: 24px 20px; margin-top: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); border-top: 3px solid var(--gold); }
+  .summary-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--navy); margin-bottom: 16px; }
+  .summary-row { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--gray-200); font-size: 0.9rem; }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label { color: var(--gray-600); font-weight: 600; min-width: 160px; flex-shrink: 0; font-size: 0.85rem; }
+  .summary-value { color: var(--text); line-height: 1.5; }
+  .print-row { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-print { background: var(--gold); color: white; border: none; border-radius: 8px; padding: 13px 24px; font-family: var(--sans); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .btn-print:hover { background: #b07e2e; }
+  .btn-restart { background: white; color: var(--gray-600); border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 12px 20px; font-family: var(--sans); font-size: 0.9rem; cursor: pointer; }
+  .disclaimer { font-size: 0.78rem; color: var(--gray-400); text-align: center; margin-top: 32px; line-height: 1.6; padding: 0 8px; }
+  @media print {
+    .site-header, .progress-bar-wrap, #screen-intro, #screen-entry, #screen-hives, #screen-swelling, .print-row, .nav-row { display: none !important; }
+    #screen-results { display: block !important; }
+    body { background: white; }
+    .main { padding: 0; max-width: 100%; }
+    .handout-card, .summary-card { box-shadow: none; border: 1pt solid #ccc; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="logo-mark">H</div>
+  <div class="header-text">
+    <h1>Haden Allergy &amp; Immunology</h1>
+    <p>Patient Education Series — Hives &amp; Swelling</p>
+  </div>
+</header>
+<div class="progress-bar-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">Getting started</div>
+</div>
+<main class="main">
+
+  <!-- INTRO -->
+  <div class="screen active" id="screen-intro">
+    <div class="intro-card">
+      <h2>Before Your Visit</h2>
+      <p class="subtitle">This questionnaire helps Dr. Haden understand your hives and/or swelling before you meet. Your answers will be used to prepare educational materials matched to your specific situation.</p>
+      <div class="intro-note">&#128203; <strong>How it works:</strong> Answer the questions that apply to you. At the end, you'll receive personalized information and a summary to bring to your appointment.</div>
+      <div class="time-estimate"><span>&#9201;</span> Takes about 5–7 minutes.</div>
+      <button class="btn-primary" onclick="startQ()">Begin Questionnaire</button>
+    </div>
+    <p class="disclaimer">This tool provides educational information only. It does not diagnose, treat, or replace the advice of your physician. In an emergency, call 911.</p>
+  </div>
+
+  <!-- ENTRY -->
+  <div class="screen" id="screen-entry">
+    <div class="section-header"><h3>About Your Symptoms</h3><p>Let's start with what brings you in today</p></div>
+    <div class="question-card">
+      <div class="q-label">Question 1</div>
+      <div class="q-text">What are you experiencing?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="entry" value="hives_only"> Hives (raised, itchy welts) — no swelling</label>
+        <label class="choice-item"><input type="radio" name="entry" value="swelling_only"> Swelling of lips, face, throat, or other areas — no hives</label>
+        <label class="choice-item"><input type="radio" name="entry" value="both"> Both hives and swelling</label>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goBack()">&#8592; Back</button>
+      <button class="btn-primary btn-next" onclick="fromEntry()">Continue &#8594;</button>
+    </div>
+  </div>
+
+  <!-- HIVES -->
+  <div class="screen" id="screen-hives">
+    <div class="section-header"><h3>About Your Hives</h3><p>Answer what applies — skip anything that doesn't</p></div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 1</div>
+      <div class="q-text">When was the first time you ever had hives?</div>
+      <div class="date-row">
+        <select id="h_onset_month"><option value="">Month</option><option value="unknown">Don't remember</option></select>
+        <select id="h_onset_year"><option value="">Year</option><option value="unknown">Don't remember</option></select>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 2</div>
+      <div class="q-text">How often are you getting hives now?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="h_freq" value="daily"> Every day</label>
+        <label class="choice-item"><input type="radio" name="h_freq" value="few_per_week"> A few days a week</label>
+        <label class="choice-item"><input type="radio" name="h_freq" value="few_per_month"> A few days a month</label>
+        <label class="choice-item"><input type="radio" name="h_freq" value="randomly"> Randomly — no pattern</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 3</div>
+      <div class="q-text">What do your hives look like? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="h_appearance" value="red"> Red</label>
+        <label class="choice-item"><input type="checkbox" name="h_appearance" value="white"> White or pale center</label>
+        <label class="choice-item"><input type="checkbox" name="h_appearance" value="dark"> Dark or brownish</label>
+        <label class="choice-item"><input type="checkbox" name="h_appearance" value="raised"> Raised above the skin</label>
+        <label class="choice-item"><input type="checkbox" name="h_appearance" value="round"> Round or oval</label>
+        <label class="choice-item"><input type="checkbox" name="h_appearance" value="funny_shaped"> Irregular or funny-shaped</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 4</div>
+      <div class="q-text">How big are most of your hives? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="h_size" value="pinpoint"> Pinpoint — very tiny</label>
+        <label class="choice-item"><input type="checkbox" name="h_size" value="dime"> About dime-sized</label>
+        <label class="choice-item"><input type="checkbox" name="h_size" value="quarter"> About quarter-sized</label>
+        <label class="choice-item"><input type="checkbox" name="h_size" value="coalesce"> Several run together into one large area</label>
+        <label class="choice-item"><input type="checkbox" name="h_size" value="start_small_grow"> Start tiny then grow larger</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 4b</div>
+      <div class="q-text">How long has this current episode been going on?</div>
+      <div class="q-definition">Chronic hives = hives more days than not for at least 6 weeks in a row.</div>
+      <div class="choices" style="margin-bottom:16px;">
+        <label class="choice-item"><input type="radio" name="h_cur_dur" value="acute"> Less than 6 weeks</label>
+        <label class="choice-item"><input type="radio" name="h_cur_dur" value="6w_3m"> 6 weeks to 3 months</label>
+        <label class="choice-item"><input type="radio" name="h_cur_dur" value="3m_6m"> 3 to 6 months</label>
+        <label class="choice-item"><input type="radio" name="h_cur_dur" value="6m_1y"> 6 months to 1 year</label>
+        <label class="choice-item"><input type="radio" name="h_cur_dur" value="gt1y"> More than 1 year</label>
+      </div>
+      <div class="q-text" style="margin-top:8px;">Have you had chronic hives before this episode?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="h_prior" value="first"> No — this is the first time</label>
+        <label class="choice-item"><input type="radio" name="h_prior" value="one"> Yes — one prior episode</label>
+        <label class="choice-item"><input type="radio" name="h_prior" value="multiple"> Yes — multiple prior episodes</label>
+        <label class="choice-item"><input type="radio" name="h_prior" value="years"> Yes — on and off for years</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 5</div>
+      <div class="q-text">What do your hives feel like? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="h_sensation" value="itch"> Itch</label>
+        <label class="choice-item"><input type="checkbox" name="h_sensation" value="burn"> Burn</label>
+        <label class="choice-item"><input type="checkbox" name="h_sensation" value="tingle"> Tingle</label>
+        <label class="choice-item"><input type="checkbox" name="h_sensation" value="none"> No sensation at all</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 6</div>
+      <div class="q-text">If you drew a circle around one single hive, how long would <em>that one hive</em> stay in the same spot before fading?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="h_lesion_dur" value="minutes"> A few minutes</label>
+        <label class="choice-item"><input type="radio" name="h_lesion_dur" value="hours"> A few hours</label>
+        <label class="choice-item"><input type="radio" name="h_lesion_dur" value="days"> A few days</label>
+        <label class="choice-item"><input type="radio" name="h_lesion_dur" value="weeks"> Weeks — it stays in one place</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 7</div>
+      <div class="q-text">Do you have any of the following? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="h_skin_bg" value="dry"> Dry skin in general</label>
+        <label class="choice-item"><input type="checkbox" name="h_skin_bg" value="itchy"> Generally itchy skin even without hives</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 8</div>
+      <div class="q-text">If you scratch your skin firmly with a fingernail, does it leave a raised red line or welt?</div>
+      <div class="bool-row">
+        <button class="bool-btn" onclick="setBool('h_dermo','yes',this)">Yes</button>
+        <button class="bool-btn" onclick="setBool('h_dermo','no',this)">No</button>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 9</div>
+      <div class="q-text">Did you start any new medications, vitamins, or supplements in the month <em>before</em> your hives began?</div>
+      <div class="bool-row" style="margin-bottom:10px;">
+        <button class="bool-btn" onclick="showIf('h_meds','yes',this,'h_meds_txt')">Yes</button>
+        <button class="bool-btn" onclick="showIf('h_meds','no',this,'h_meds_txt')">No</button>
+      </div>
+      <input type="text" id="h_meds_txt" class="text-input" placeholder="List them here..." style="display:none;margin-top:8px;">
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 10</div>
+      <div class="q-text">Did you change your diet in the month before your hives began?</div>
+      <div class="bool-row" style="margin-bottom:10px;">
+        <button class="bool-btn" onclick="showIf('h_diet','yes',this,'h_diet_txt')">Yes</button>
+        <button class="bool-btn" onclick="showIf('h_diet','no',this,'h_diet_txt')">No</button>
+      </div>
+      <input type="text" id="h_diet_txt" class="text-input" placeholder="Describe the change..." style="display:none;margin-top:8px;">
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 11</div>
+      <div class="q-text">Do any of these make your hives <strong>worse</strong>? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="heat"> Heat</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="cold"> Cold</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="exercise"> Exercise</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="food"> Certain foods</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="sun"> Sunlight</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="water"> Water (bathing, swimming)</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="stress"> Stress</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="shower"> Showering</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="pressure"> Pressure (waistband, socks, bra straps)</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="vibration"> Vibration (mowing lawn, tools)</label>
+        <label class="choice-item"><input type="checkbox" name="h_agg" value="nsaids"> Aspirin, ibuprofen (Advil), or naproxen (Aleve)</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 12</div>
+      <div class="q-text">Do any of these make your hives <strong>better</strong>? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="h_relieve" value="heat"> Heat</label>
+        <label class="choice-item"><input type="checkbox" name="h_relieve" value="cold"> Cold</label>
+        <label class="choice-item"><input type="checkbox" name="h_relieve" value="sun"> Sunlight</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 13</div>
+      <div class="q-text">Does Benadryl or another antihistamine help your hives?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="h_ah" value="yes"> Yes — it helps</label>
+        <label class="choice-item"><input type="radio" name="h_ah" value="no"> No — it doesn't seem to help</label>
+        <label class="choice-item"><input type="radio" name="h_ah" value="untried"> Haven't tried it</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 14</div>
+      <div class="q-text">Where do your hives appear? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="arms"> Arms</label>
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="legs"> Legs</label>
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="back"> Back</label>
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="chest"> Chest</label>
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="neck"> Neck</label>
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="face"> Face</label>
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="abdomen"> Abdomen</label>
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="hands"> Hands</label>
+        <label class="choice-item"><input type="checkbox" name="h_loc" value="feet"> Feet</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 15</div>
+      <div class="q-text">Were you stung by an insect shortly before your hives began?</div>
+      <div class="bool-row" style="margin-bottom:10px;">
+        <button class="bool-btn" onclick="showIf('h_sting','yes',this,'h_sting_txt')">Yes</button>
+        <button class="bool-btn" onclick="showIf('h_sting','no',this,'h_sting_txt')">No</button>
+      </div>
+      <input type="text" id="h_sting_txt" class="text-input" placeholder="What stung you?" style="display:none;margin-top:8px;">
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 16</div>
+      <div class="q-text">When a hive goes away, what does the skin look like afterward?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="h_res" value="clear"> Returns completely to normal</label>
+        <label class="choice-item"><input type="radio" name="h_res" value="bruise"> Leaves bruising</label>
+        <label class="choice-item"><input type="radio" name="h_res" value="discolor"> Leaves a discolored spot</label>
+        <label class="choice-item"><input type="radio" name="h_res" value="stays"> The hive never fully goes away</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 17</div>
+      <div class="q-text">During any episode of hives, have you also experienced: <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="h_sys" value="swelling"> Swelling of lips, face, or throat</label>
+        <label class="choice-item"><input type="checkbox" name="h_sys" value="dizzy"> Dizziness or lightheadedness</label>
+        <label class="choice-item"><input type="checkbox" name="h_sys" value="breathing"> Trouble breathing or wheezing</label>
+        <label class="choice-item"><input type="checkbox" name="h_sys" value="swallow"> Trouble swallowing or talking</label>
+        <label class="choice-item"><input type="checkbox" name="h_sys" value="nausea"> Nausea</label>
+        <label class="choice-item"><input type="checkbox" name="h_sys" value="gi"> Diarrhea, stomach cramps, or pelvic cramps</label>
+        <label class="choice-item"><input type="checkbox" name="h_sys" value="none"> None of the above</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 18</div>
+      <div class="q-text">Did anything unusual happen before your hives started — illness, travel, new pet, new hobby, or anything out of the ordinary?</div>
+      <div class="bool-row" style="margin-bottom:10px;">
+        <button class="bool-btn" onclick="showIf('h_expo','yes',this,'h_expo_txt')">Yes</button>
+        <button class="bool-btn" onclick="showIf('h_expo','no',this,'h_expo_txt')">No</button>
+      </div>
+      <input type="text" id="h_expo_txt" class="text-input" placeholder="Describe what happened..." style="display:none;margin-top:8px;">
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 19</div>
+      <div class="q-text">What do you think might be causing your hives, or what are you most concerned about?</div>
+      <input type="text" id="h_concern_txt" class="text-input" placeholder="Your thoughts...">
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Hives — 20</div>
+      <div class="q-text">Is there any family history of hives or swelling?</div>
+      <div class="bool-row">
+        <button class="bool-btn" onclick="setBool('h_fam','yes',this)">Yes</button>
+        <button class="bool-btn" onclick="setBool('h_fam','no',this)">No</button>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goBack()">&#8592; Back</button>
+      <button class="btn-primary btn-next" onclick="fromHives()">Continue &#8594;</button>
+    </div>
+  </div>
+
+  <!-- SWELLING -->
+  <div class="screen" id="screen-swelling">
+    <div class="section-header"><h3>About Your Swelling</h3><p>These questions are specifically about swelling episodes</p></div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 1</div>
+      <div class="q-text">When was the first time you ever had swelling like this?</div>
+      <div class="date-row">
+        <select id="s_onset_month"><option value="">Month</option><option value="childhood">Childhood</option><option value="unknown">Don't remember</option></select>
+        <select id="s_onset_year"><option value="">Year</option><option value="childhood">Childhood</option><option value="unknown">Don't remember</option></select>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 2</div>
+      <div class="q-text">How often are you having swelling episodes now?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="s_freq" value="daily"> Every day</label>
+        <label class="choice-item"><input type="radio" name="s_freq" value="weekly"> A few times a week</label>
+        <label class="choice-item"><input type="radio" name="s_freq" value="monthly"> A few times a month</label>
+        <label class="choice-item"><input type="radio" name="s_freq" value="random"> Randomly — no pattern</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 3</div>
+      <div class="q-text">Where do you swell? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="s_loc" value="lips"> Lips</label>
+        <label class="choice-item"><input type="checkbox" name="s_loc" value="tongue"> Tongue</label>
+        <label class="choice-item"><input type="checkbox" name="s_loc" value="throat"> Throat</label>
+        <label class="choice-item"><input type="checkbox" name="s_loc" value="eyes"> Eyes or eyelids</label>
+        <label class="choice-item"><input type="checkbox" name="s_loc" value="face"> Face (general)</label>
+        <label class="choice-item"><input type="checkbox" name="s_loc" value="hands"> Hands</label>
+        <label class="choice-item"><input type="checkbox" name="s_loc" value="feet"> Feet</label>
+        <label class="choice-item"><input type="checkbox" name="s_loc" value="abdomen"> Abdomen</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 4</div>
+      <div class="q-text">What does the swelling feel like? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="s_sens" value="itch"> Itchy</label>
+        <label class="choice-item"><input type="checkbox" name="s_sens" value="burn"> Burning</label>
+        <label class="choice-item"><input type="checkbox" name="s_sens" value="tingle"> Tingling</label>
+        <label class="choice-item"><input type="checkbox" name="s_sens" value="none"> No sensation — just swells</label>
+        <label class="choice-item"><input type="checkbox" name="s_sens" value="pain"> Painful or tight</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 5</div>
+      <div class="q-text">During swelling episodes, have you ever had: <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="s_sys" value="speak"> Trouble speaking</label>
+        <label class="choice-item"><input type="checkbox" name="s_sys" value="swallow"> Trouble swallowing</label>
+        <label class="choice-item"><input type="checkbox" name="s_sys" value="drool"> Drooling (unable to swallow saliva)</label>
+        <label class="choice-item"><input type="checkbox" name="s_sys" value="breath"> Difficulty breathing</label>
+        <label class="choice-item"><input type="checkbox" name="s_sys" value="nausea"> Nausea or vomiting</label>
+        <label class="choice-item"><input type="checkbox" name="s_sys" value="abdpain"> Severe abdominal pain</label>
+        <label class="choice-item"><input type="checkbox" name="s_sys" value="dizzy"> Dizziness</label>
+        <label class="choice-item"><input type="checkbox" name="s_sys" value="none"> None of the above</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 6</div>
+      <div class="q-text">Did you start any new medications or supplements in the month before the swelling began?</div>
+      <div class="bool-row" style="margin-bottom:10px;">
+        <button class="bool-btn" onclick="showIf('s_meds','yes',this,'s_meds_txt')">Yes</button>
+        <button class="bool-btn" onclick="showIf('s_meds','no',this,'s_meds_txt')">No</button>
+      </div>
+      <input type="text" id="s_meds_txt" class="text-input" placeholder="List them here..." style="display:none;margin-top:8px;">
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 7</div>
+      <div class="q-text">Are you on a blood pressure medication?</div>
+      <div class="bool-row" style="margin-bottom:10px;">
+        <button class="bool-btn" onclick="showIf('s_bpmed','yes',this,'s_bpmed_txt')">Yes</button>
+        <button class="bool-btn" onclick="showIf('s_bpmed','no',this,'s_bpmed_txt')">No</button>
+      </div>
+      <input type="text" id="s_bpmed_txt" class="text-input" placeholder="Which one?" style="display:none;margin-top:8px;">
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 8</div>
+      <div class="q-text">Does anyone in your family have a history of unexplained swelling episodes, severe abdominal attacks, or being told they had a "swelling disorder"?</div>
+      <div class="bool-row">
+        <button class="bool-btn" onclick="setBool('s_fam','yes',this)">Yes</button>
+        <button class="bool-btn" onclick="setBool('s_fam','no',this)">No</button>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 9</div>
+      <div class="q-text">Do any of these make your swelling worse? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="s_agg" value="heat"> Heat</label>
+        <label class="choice-item"><input type="checkbox" name="s_agg" value="cold"> Cold</label>
+        <label class="choice-item"><input type="checkbox" name="s_agg" value="exercise"> Exercise</label>
+        <label class="choice-item"><input type="checkbox" name="s_agg" value="food"> Food</label>
+        <label class="choice-item"><input type="checkbox" name="s_agg" value="stress"> Stress</label>
+        <label class="choice-item"><input type="checkbox" name="s_agg" value="nsaids"> Aspirin, ibuprofen, or naproxen</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 10</div>
+      <div class="q-text">Does Benadryl or another antihistamine help the swelling go down?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="s_ah" value="yes"> Yes — it helps</label>
+        <label class="choice-item"><input type="radio" name="s_ah" value="no"> No — it doesn't seem to help</label>
+        <label class="choice-item"><input type="radio" name="s_ah" value="untried"> Haven't tried it</label>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <div class="q-label">Swelling — 11</div>
+      <div class="q-text">Have you ever had swelling <em>without</em> hives?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="s_nohives" value="no"> No — swelling only happens with hives</label>
+        <label class="choice-item"><input type="radio" name="s_nohives" value="sometimes"> Sometimes</label>
+        <label class="choice-item"><input type="radio" name="s_nohives" value="often"> Often</label>
+        <label class="choice-item"><input type="radio" name="s_nohives" value="always"> Always — I never get hives with the swelling</label>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goBack()">&#8592; Back</button>
+      <button class="btn-primary btn-next" onclick="showResults()">See My Results &#8594;</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="screen" id="screen-results">
+    <div class="results-header">
+      <h2>Your Personalized Information</h2>
+      <p>Based on your answers — prepared for your visit with Dr. Haden</p>
+    </div>
+    <div class="emergency-banner" id="emergBanner">
+      <h3>&#9888;&#65039; Important — Please Read First</h3>
+      <p style="margin-bottom:10px;font-size:0.9rem;">Your answers indicate you have experienced symptoms that can be serious. If any of the following occur, <strong>call 911 or go to the nearest emergency room immediately:</strong></p>
+      <ul>
+        <li>Throat swelling or trouble breathing</li>
+        <li>Trouble swallowing or speaking</li>
+        <li>Dizziness or feeling faint during a hive or swelling episode</li>
+        <li>Drooling or inability to swallow your own saliva</li>
+      </ul>
+      <p style="margin-top:10px;font-size:0.85rem;opacity:0.9;">Use an epinephrine auto-injector (EpiPen) if you have one, then call 911. Do not wait.</p>
+    </div>
+    <div class="section-divider">Information prepared for you</div>
+    <div id="handoutContainer"></div>
+    <div class="summary-card">
+      <h3>&#128203; Clinical Summary — For Your Chart</h3>
+      <div id="clinSummary"></div>
+    </div>
+    <div class="print-row">
+      <button class="btn-print" onclick="window.print()">&#128424; Print This Page</button>
+      <button class="btn-restart" onclick="location.reload()">Start Over</button>
+    </div>
+    <p class="disclaimer">This tool provides educational information only. It does not diagnose or treat any condition. All clinical decisions are made by your physician.</p>
+  </div>
+
+</main>
+<script>
+const A = {};
+let flow = 'hives_only';
+const hist = ['screen-intro'];
+
+const HANDOUTS = {
+  urticaria_angioedema_foundational: { title: "Understanding Hives and Angioedema", desc: "A comprehensive guide to what hives are, why they happen, and what to expect from evaluation and treatment.", tag: "Foundation" },
+  autoimmune_urticaria: { title: "Autoimmune Urticaria", desc: "About the connection between your immune system and chronic hives — including the role of antibodies and thyroid disease.", tag: "Chronic Hives" },
+  cholinergic_urticaria: { title: "Cholinergic Urticaria", desc: "Small, intensely itchy hives triggered by heat, exercise, or emotional stress. Why they happen and how to manage them.", tag: "Physical Urticaria" },
+  cold_urticaria: { title: "Cold Urticaria", desc: "Hives and swelling triggered by cold temperatures. Includes safety information for swimming and cold exposure.", tag: "Physical Urticaria" },
+  solar_urticaria: { title: "Solar Urticaria", desc: "Hives triggered by sunlight. Explains the action spectrum and protective strategies.", tag: "Physical Urticaria" },
+  physical_urticarias_umbrella: { title: "Physical Urticarias — Overview", desc: "When physical triggers cause hives: heat, cold, pressure, vibration, sunlight, and water. Many patients have more than one.", tag: "Physical Urticaria" },
+  dermatographic_urticaria: { title: "Dermatographic Urticaria", desc: "When scratching or pressure causes raised welts. The most common physical urticaria — and often the least recognized.", tag: "Physical Urticaria" },
+  hives_and_stress: { title: "Hives and Stress", desc: "The science behind why stress makes hives worse — and what you can actually do about it.", tag: "Triggers" },
+  dermatitis_vs_urticaria: { title: "Hives vs. Rash — What's the Difference?", desc: "Understanding when itchy skin is hives and when it might be something else entirely.", tag: "Diagnosis" },
+  urticaria_pigmentosa: { title: "Urticaria Pigmentosa and Mastocytosis", desc: "About darkly pigmented skin lesions and their connection to mast cell conditions.", tag: "Mast Cell" },
+  mcas_vs_csu: { title: "MCAS vs. Chronic Spontaneous Urticaria", desc: "When hives are part of a larger picture involving multiple organ systems.", tag: "Mast Cell" },
+  hives_in_kids: { title: "Hives in Children", desc: "An age-by-age guide to hives in pediatric patients — triggers, patterns, and what parents need to know.", tag: "Pediatric" },
+  pregnancy_hives_mast_cell: { title: "Pregnancy, Hives, and Mast Cell Disease", desc: "Managing hives and mast cell conditions during pregnancy.", tag: "Special Populations" },
+  covid_urticaria: { title: "Viral Infections and Hives", desc: "How viral infections — including COVID-19 and strep — can trigger or unmask chronic hives.", tag: "Post-Infectious" }
+};
+
+window.onload = () => {
+  const yr = document.getElementById('h_onset_year');
+  const now = new Date().getFullYear();
+  for (let y = now; y >= now-80; y--) { const o = document.createElement('option'); o.value=y; o.textContent=y; yr.appendChild(o); }
+  upProg(0,'Introduction');
+};
+
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+function goBack(){ if(hist.length>1){hist.pop();show(hist[hist.length-1]);} }
+function upProg(p,l){ document.getElementById('progressFill').style.width=p+'%'; document.getElementById('progressLabel').textContent=l; }
+function setBool(k,v,btn){ A[k]=v; btn.parentElement.querySelectorAll('.bool-btn').forEach(b=>{b.classList.remove('selected-yes','selected-no');}); btn.classList.add(v==='yes'?'selected-yes':'selected-no'); }
+function showIf(k,v,btn,tid){ setBool(k,v,btn); const el=document.getElementById(tid); if(el) el.style.display=v==='yes'?'block':'none'; }
+function getChecked(n){ return Array.from(document.querySelectorAll('input[name="'+n+'"]:checked')).map(i=>i.value); }
+function getRadio(n){ const e=document.querySelector('input[name="'+n+'"]:checked'); return e?e.value:null; }
+
+document.addEventListener('change',function(e){
+  if(e.target.type==='radio'){ const n=e.target.name; document.querySelectorAll('input[name="'+n+'"]').forEach(i=>i.closest('.choice-item').classList.remove('selected')); e.target.closest('.choice-item').classList.add('selected'); }
+  if(e.target.type==='checkbox'){ e.target.closest('.choice-item').classList.toggle('selected',e.target.checked); }
+});
+
+function startQ(){ hist.push('screen-entry'); show('screen-entry'); upProg(5,'About your symptoms'); }
+
+function fromEntry(){
+  const v=getRadio('entry'); if(!v){alert('Please select what you are experiencing.');return;}
+  A.entry=v; flow=v;
+  if(v==='swelling_only'){hist.push('screen-swelling');show('screen-swelling');upProg(30,'About your swelling');}
+  else{hist.push('screen-hives');show('screen-hives');upProg(15,'About your hives');}
+}
+
+function fromHives(){
+  A.h_freq=getRadio('h_freq'); A.h_appearance=getChecked('h_appearance'); A.h_size=getChecked('h_size');
+  A.h_cur_dur=getRadio('h_cur_dur'); A.h_prior=getRadio('h_prior'); A.h_sensation=getChecked('h_sensation');
+  A.h_lesion_dur=getRadio('h_lesion_dur'); A.h_skin_bg=getChecked('h_skin_bg');
+  A.h_agg=getChecked('h_agg'); A.h_relieve=getChecked('h_relieve'); A.h_ah=getRadio('h_ah');
+  A.h_loc=getChecked('h_loc'); A.h_res=getRadio('h_res'); A.h_sys=getChecked('h_sys');
+  A.h_meds_txt=document.getElementById('h_meds_txt').value;
+  A.h_diet_txt=document.getElementById('h_diet_txt').value;
+  A.h_expo_txt=document.getElementById('h_expo_txt').value;
+  A.h_concern=document.getElementById('h_concern_txt').value;
+  if(flow==='both'){hist.push('screen-swelling');show('screen-swelling');upProg(60,'About your swelling');}
+  else{collectSwelling();renderResults();}
+}
+
+function collectSwelling(){
+  A.s_loc=getChecked('s_loc'); A.s_sens=getChecked('s_sens'); A.s_sys=getChecked('s_sys');
+  A.s_agg=getChecked('s_agg'); A.s_ah=getRadio('s_ah'); A.s_nohives=getRadio('s_nohives');
+  A.s_meds_txt=document.getElementById('s_meds_txt')?document.getElementById('s_meds_txt').value:'';
+  A.s_bpmed_txt=document.getElementById('s_bpmed_txt')?document.getElementById('s_bpmed_txt').value:'';
+}
+
+function showResults(){ collectSwelling(); renderResults(); }
+
+function checkEmergency(){
+  const hs=A.h_sys||[]; const ss=A.s_sys||[]; const sl=A.s_loc||[];
+  return hs.includes('breathing')||hs.includes('swallow')||ss.includes('speak')||ss.includes('swallow')||ss.includes('drool')||ss.includes('breath')||sl.includes('throat');
+}
+
+function route(){
+  const s=new Set();
+  s.add('urticaria_angioedema_foundational');
+  if(A.h_dermo==='yes'){s.add('dermatographic_urticaria');s.add('physical_urticarias_umbrella');}
+  const smallGrow=(A.h_size||[]).some(v=>['pinpoint','start_small_grow'].includes(v));
+  const heatEx=(A.h_agg||[]).some(v=>['heat','exercise'].includes(v));
+  if(smallGrow&&heatEx){s.add('cholinergic_urticaria');s.add('physical_urticarias_umbrella');}
+  if((A.h_agg||[]).includes('cold')){s.add('cold_urticaria');s.add('physical_urticarias_umbrella');}
+  if((A.h_agg||[]).includes('sun')){s.add('solar_urticaria');s.add('physical_urticarias_umbrella');}
+  if(['days','weeks'].includes(A.h_lesion_dur)||['bruise','discolor','stays'].includes(A.h_res)){s.add('dermatitis_vs_urticaria');}
+  if((A.h_agg||[]).includes('stress')){s.add('hives_and_stress');}
+  if((A.h_appearance||[]).includes('dark')){s.add('urticaria_pigmentosa');}
+  const bg=A.h_skin_bg||[];
+  if(bg.includes('dry')&&bg.includes('itchy')){s.add('dermatitis_vs_urticaria');}
+  if((A.h_sys||[]).includes('gi')){s.add('mcas_vs_csu');}
+  const chronic=['6w_3m','3m_6m','6m_1y','gt1y'];
+  if(chronic.includes(A.h_cur_dur)||A.h_fam==='yes'){s.add('autoimmune_urticaria');}
+  if(A.h_expo==='yes'&&A.h_expo_txt){
+    const d=A.h_expo_txt.toLowerCase();
+    if(['covid','infect','virus','sick','respiratory','cold','flu','strep','illness','throat','ear'].some(w=>d.includes(w))){s.add('covid_urticaria');}
+  }
+  const physTrig=(A.h_agg||[]).filter(v=>['heat','cold','exercise','sun','water','pressure','vibration','shower'].includes(v));
+  if(physTrig.length>=2){s.add('physical_urticarias_umbrella');}
+  return Array.from(s);
+}
+
+function renderResults(){
+  upProg(100,'Complete');
+  const emergency=checkEmergency();
+  document.getElementById('emergBanner').classList.toggle('visible',emergency);
+  const handouts=route();
+  const hc=document.getElementById('handoutContainer');
+  hc.innerHTML=handouts.map(k=>{const h=HANDOUTS[k];if(!h)return'';return '<div class="handout-card"><h4>'+h.title+'</h4><p>'+h.desc+'</p><span class="handout-tag">'+h.tag+'</span></div>';}).join('');
+  buildSummary();
+  hist.push('screen-results');
+  show('screen-results');
+}
+
+function buildSummary(){
+  const rows=[];
+  const tmap={hives_only:'Hives only',swelling_only:'Swelling only',both:'Hives and swelling'};
+  rows.push(['Chief complaint',tmap[A.entry]||'—']);
+  const dmap={acute:'Less than 6 weeks (Acute)','6w_3m':'6 weeks – 3 months (Chronic)','3m_6m':'3–6 months (Chronic)','6m_1y':'6 months – 1 year (Chronic)',gt1y:'More than 1 year (Chronic)'};
+  if(A.h_cur_dur)rows.push(['Current episode',dmap[A.h_cur_dur]||A.h_cur_dur]);
+  const pmap={first:'First episode',one:'1 prior chronic episode',multiple:'Multiple prior episodes',years:'On/off for years'};
+  if(A.h_prior)rows.push(['Prior chronic hive history',pmap[A.h_prior]||'—']);
+  const fmap={daily:'Daily',few_per_week:'Several days/week',few_per_month:'Several days/month',randomly:'Random/episodic'};
+  if(A.h_freq)rows.push(['Frequency now',fmap[A.h_freq]||A.h_freq]);
+  const lmap={minutes:'Minutes (normal)',hours:'Hours (normal)',days:'&#9888; Days — vasculitis screen',weeks:'&#9888; Weeks — vasculitis screen'};
+  if(A.h_lesion_dur)rows.push(['Individual lesion duration',lmap[A.h_lesion_dur]]);
+  if(A.h_sensation&&A.h_sensation.length)rows.push(['Sensation',A.h_sensation.join(', ')]);
+  const rmap={clear:'Fades completely ✓',bruise:'&#9888; Leaves bruising',discolor:'&#9888; Leaves discoloration',stays:'&#9888; Does not resolve'};
+  if(A.h_res)rows.push(['Resolution pattern',rmap[A.h_res]]);
+  if(A.h_agg&&A.h_agg.length)rows.push(['Aggravating factors',A.h_agg.join(', ')]);
+  const ahmap={yes:'Responds to antihistamines ✓',no:'&#9888; Does not respond',untried:'Not tried'};
+  if(A.h_ah)rows.push(['Antihistamine response',ahmap[A.h_ah]]);
+  if(A.h_dermo==='yes')rows.push(['Dermographism','&#9888; Positive']);
+  const sysmap={swelling:'Angioedema',dizzy:'Dizziness',breathing:'&#128680; Breathing difficulty',swallow:'&#128680; Trouble swallowing',nausea:'Nausea',gi:'GI/pelvic cramps'};
+  const syms=(A.h_sys||[]).filter(v=>v!=='none').map(v=>sysmap[v]||v);
+  if(syms.length)rows.push(['Systemic symptoms',syms.join(', ')]);
+  if(A.h_meds==='yes'&&A.h_meds_txt)rows.push(['New medications',A.h_meds_txt]);
+  if(A.h_expo==='yes'&&A.h_expo_txt)rows.push(['Recent exposure/illness',A.h_expo_txt]);
+  if(A.h_concern)rows.push(['Patient concern',A.h_concern]);
+  if(A.h_fam==='yes')rows.push(['Family history hives','&#9888; Positive']);
+  if(flow!=='hives_only'){
+    if(A.s_loc&&A.s_loc.length)rows.push(['Swelling locations',A.s_loc.join(', ')]);
+    const sahmap={yes:'Responds ✓',no:'&#9888; Does not respond — bradykinin pathway?',untried:'Not tried'};
+    if(A.s_ah)rows.push(['Swelling — antihistamine',sahmap[A.s_ah]]);
+    if(A.s_nohives==='always')rows.push(['Isolated angioedema','&#9888; Yes — bradykinin pathway consideration']);
+    if(A.s_bpmed==='yes')rows.push(['BP medication',A.s_bpmed_txt||'&#9888; Yes — check for ACE inhibitor / ARB']);
+    if(A.s_fam==='yes')rows.push(['Family history swelling','&#9888; Positive — HAE screen indicated']);
+  }
+  document.getElementById('clinSummary').innerHTML=rows.map(r=>'<div class="summary-row"><span class="summary-label">'+r[0]+'</span><span class="summary-value">'+r[1]+'</span></div>').join('');
+}
+</script>
+</body>
+</html>
