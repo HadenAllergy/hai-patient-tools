@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical Urticarias — Haden Allergy & Immunology</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B3A5C;
+    --blue: #2E75B6;
+    --gold: #C5A44E;
+    --gold-light: #F5ECD7;
+    --text: #2C2C2C;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+    --gray-light: #E8E8E4;
+    --emergency-red: #B22222;
+    --emergency-bg: #FFF5F5;
+    --bottomline-bg: #F0F4F8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .site-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--gold);
+  }
+  .site-header .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px; height: 48px;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+  .site-header h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.15rem;
+  }
+  .site-header .subtitle {
+    font-size: 0.78rem;
+    font-style: italic;
+    opacity: 0.85;
+    letter-spacing: 0.03em;
+  }
+
+  .content {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+  }
+
+  .handout-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--gold);
+  }
+  .handout-title h2 {
+    font-size: 1.8rem;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+    line-height: 1.25;
+  }
+  .handout-title .tagline {
+    font-style: italic;
+    color: var(--blue);
+    font-size: 1rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin: 2.2rem 0 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  h4 {
+    font-size: 1rem;
+    color: var(--blue);
+    margin: 1.5rem 0 0.5rem;
+    font-style: italic;
+  }
+
+  p { margin-bottom: 1rem; text-align: left; }
+
+  strong { color: var(--navy); }
+
+  .treatment-step {
+    margin: 0.8rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--gold);
+  }
+  .treatment-step p { margin-bottom: 0.5rem; }
+
+  .practical-item {
+    margin: 0.6rem 0;
+    padding: 0.5rem 0.8rem;
+    background: var(--gold-light);
+    border-radius: 4px;
+  }
+
+  .bottom-line {
+    background: var(--bottomline-bg);
+    border-left: 4px solid var(--navy);
+    padding: 1.2rem 1.5rem;
+    margin: 2.2rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+  }
+  .bottom-line strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--navy);
+  }
+
+  .emergency {
+    background: var(--emergency-bg);
+    border: 2px solid var(--emergency-red);
+    border-radius: 6px;
+    padding: 1.2rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .emergency strong {
+    color: var(--emergency-red);
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .references {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--gold);
+  }
+  .references h3 { border-bottom: none; margin-bottom: 0.6rem; }
+  .references ol {
+    padding-left: 1.5rem;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: #555;
+  }
+  .references li { margin-bottom: 0.35rem; }
+
+  .site-footer {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.7rem;
+    line-height: 1.6;
+    border-top: 4px solid var(--gold);
+  }
+  .site-footer .copyright {
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    font-size: 0.72rem;
+  }
+
+  @media print {
+    .site-header, .site-footer { break-inside: avoid; }
+    body { font-size: 11pt; background: white; }
+    .content { max-width: 100%; padding: 0.5in; }
+    .emergency { border-width: 2pt; }
+    a { color: var(--navy); text-decoration: none; }
+  }
+
+  @media (max-width: 600px) {
+    html { font-size: 16px; }
+    .content { padding: 1.5rem 1rem 2rem; }
+    .handout-title h2 { font-size: 1.5rem; }
+    .site-header { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo-mark">H</div>
+  <h1>Haden Allergy &amp; Immunology</h1>
+  <div class="subtitle">Patient Education Series</div>
+</header>
+
+<main class="content">
+
+<div class="handout-title">
+  <h2>Physical Urticarias</h2>
+  <div class="tagline">When the World Itself Becomes the Trigger</div>
+</div>
+
+<h3>The Allergist's Periodic Table</h3>
+
+<p>Most people, when they think of hives, think of allergic reactions — a shrimp cocktail gone wrong, an antibiotic that disagreed with the immune system, the neighbor's cat. But there exists an entire family of urticarias in which the trigger is not a substance at all but a physical force: pressure, vibration, sunlight, water, heat, cold, friction. The physical urticarias are conditions in which the fundamental elements of daily life — the forces you cannot avoid because they constitute the environment itself — provoke your mast cells into a response.</p>
+
+<p>This is the umbrella handout. It covers the family as a whole, provides a unifying framework for understanding why physical forces trigger hives, and then walks through each subtype with the clinical detail you need. If you have been diagnosed with a specific physical urticaria (cold urticaria, cholinergic urticaria, or dermatographic urticaria), you may also have a dedicated handout for your condition. This document places your specific diagnosis within the larger context.</p>
+
+<p>Physical urticarias collectively account for approximately 20 to 30 percent of all chronic urticaria cases. They can occur alone or in combination — many patients have two or more physical triggers operating simultaneously, which can make the diagnostic picture considerably more complex. They share a common pathway (mast cell degranulation in the skin) but differ in how that pathway gets activated, which is why the triggers, the appearance of the hives, and the treatment approach can vary between subtypes.</p>
+
+<h3>The Unifying Mechanism: Force Meets Mast Cell</h3>
+
+<p>All physical urticarias share a final common pathway: a physical stimulus causes mast cells in the skin to release histamine and other inflammatory mediators, producing wheals (hives), erythema (redness), and pruritus (itch). What differs between subtypes is the transduction step — how a mechanical, thermal, or electromagnetic force gets translated into a biochemical signal that tells the mast cell to degranulate.</p>
+
+<p>In some physical urticarias, this transduction is well understood. In cold urticaria, temperature-dependent conformational changes in IgE or membrane proteins likely trigger degranulation. In cholinergic urticaria, acetylcholine release from sympathetic nerves activates dermal mast cells either directly or through an IgE-mediated allergy to sweat components. In dermatographic urticaria, shearing forces on the skin mechanically disrupt mast cell membranes.</p>
+
+<p>In others — solar urticaria, vibratory urticaria, aquagenic urticaria — the transduction mechanism remains incompletely understood, and our treatment is accordingly more empiric. But the good news is consistent: because all physical urticarias share the histamine pathway, antihistamines form the backbone of treatment across all subtypes, even when we do not fully understand the upstream mechanism.</p>
+
+<h3>Delayed Pressure Urticaria</h3>
+
+<p>Delayed pressure urticaria is the physical urticaria that tests patience. Unlike most physical urticarias, which produce hives within minutes of the stimulus, delayed pressure urticaria produces deep, painful swelling four to six hours after sustained pressure is applied to the skin — and the swelling can persist for 12 to 72 hours. A tight waistband, the strap of a heavy bag, the handle of a tool gripped for hours, the soles of the feet after prolonged standing or walking, the palms after clapping — these are the triggers.</p>
+
+<p>The lesions are not the classic superficial wheals of other urticarias. They are deep, erythematous, sometimes painful swellings that can resemble angioedema more than urticaria. Patients frequently describe a burning or aching quality rather than itch. The delay between trigger and symptoms is the diagnostically confusing feature — patients often do not connect the afternoon swelling of their feet with the morning's three-hour shift of standing, because the cause preceded the effect by half a day.</p>
+
+<p>Delayed pressure urticaria is more common than generally recognized, occurring in 37 to 50 percent of patients with chronic spontaneous urticaria as an overlapping condition. It disproportionately affects working-age adults, particularly those in occupations involving manual labor, prolonged standing, or repetitive tool use.</p>
+
+<p><strong>Diagnosis</strong> is confirmed by a provocation test: a weighted rod (typically 2.5 to 4.5 kg/cm²) is applied to the forearm or thigh for 10 to 20 minutes, and the site is observed for swelling at six and twenty-four hours. A positive test produces a palpable, often painful swelling at the pressure site.</p>
+
+<p><strong>Treatment</strong> is notably more difficult than for other physical urticarias. Standard antihistamines help but frequently provide incomplete relief. The EAACI/GA²LEN guidelines recommend second-generation antihistamines up-dosed to four times standard as first-line therapy. For refractory cases, omalizumab has shown benefit in multiple case series. Dapsone and sulfasalazine have been used with variable success. Short corticosteroid courses (three to five days) can abort severe flares but are not appropriate as maintenance therapy. Montelukast as an add-on has modest supporting evidence.</p>
+
+<p>Practical management includes distributing weight broadly (padded straps, ergonomic tool handles, cushioned insoles), avoiding prolonged static pressure, and pre-treating with antihistamines before known triggers (a long flight, a day of manual work).</p>
+
+<h3>Vibratory Urticaria (Vibratory Angioedema)</h3>
+
+<p>Vibratory urticaria — more accurately called vibratory angioedema, because the swelling is typically deep rather than superficial — is triggered by mechanical vibration applied to the skin. Lawnmowers, power tools, motorcycles, jackhammers, horseback riding, mountain biking, running on hard surfaces, even vigorous towel-drying can provoke it. The symptoms appear within minutes of vibratory exposure and typically resolve within one to two hours.</p>
+
+<p>This is a rare condition, but it exists in two forms. The acquired form can develop at any age and is sometimes associated with cholinergic urticaria. The familial form is an autosomal dominant condition caused by a missense variant in the ADGRE2 gene, which encodes a mechanosensory receptor on mast cells. When this receptor is mutated, normal vibration forces trigger degranulation at a much lower threshold than in unaffected individuals.</p>
+
+<p><strong>Diagnosis</strong> involves applying a laboratory vortex mixer or vibrating device to the forearm for four to five minutes and observing for localized swelling.</p>
+
+<p><strong>Treatment</strong> follows the standard antihistamine-first approach. Avoidance of specific vibratory triggers is the most effective strategy where feasible, though this can be occupationally limiting. Omalizumab has been reported effective in refractory cases.</p>
+
+<h3>Solar Urticaria</h3>
+
+<p>Solar urticaria produces hives within minutes of exposure to sunlight — specifically, to ultraviolet or visible light radiation. The wheals appear on sun-exposed skin, are characteristically pruritic, and resolve within one to two hours of removing the light stimulus. The condition is classified by the wavelength of light that triggers the response (UVA, UVB, visible light, or combinations), which matters because different wavelength sensitivities respond to different photoprotective strategies.</p>
+
+<p>The mechanism is thought to involve a photo-allergen — an endogenous chromophore (a light-absorbing molecule in the skin) that undergoes a conformational change when exposed to specific wavelengths, creating a neoantigen recognized by IgE on dermal mast cells. This is essentially a light-activated allergy to a component of your own skin.</p>
+
+<p>Solar urticaria is rare (estimated at fewer than 1 percent of all urticaria cases) but profoundly disabling when it occurs, because avoidance of all sunlight is not compatible with normal life, particularly in outdoor occupations or climates like Fort Worth.</p>
+
+<p><strong>Diagnosis</strong> involves phototesting — controlled exposure of small skin areas to calibrated doses of UVA, UVB, and visible light, with observation for wheal development.</p>
+
+<p><strong>Treatment</strong> begins with antihistamines and photoprotection (broad-spectrum sunscreens, UPF clothing, avoidance of peak sun hours). For patients who do not respond, photohardening — graduated, controlled UV exposure to build tolerance — can be effective. Omalizumab has shown dramatic efficacy in case series and is increasingly considered for refractory solar urticaria. Plasmapheresis has been used in severe, treatment-resistant cases, consistent with the IgE-mediated pathogenesis.</p>
+
+<h3>Aquagenic Urticaria</h3>
+
+<p>Aquagenic urticaria is among the rarest forms of physical urticaria. It produces small, folliculocentric wheals within minutes of skin contact with water — regardless of temperature. This distinguishes it from cold urticaria (triggered by cold water) and heat urticaria (triggered by hot water). In aquagenic urticaria, room-temperature water applied to the skin reproduces the rash.</p>
+
+<p>The mechanism is not fully understood. Leading hypotheses include: (a) water interacts with a substance in or on the skin to form an allergen that triggers mast cell degranulation; (b) water alters the osmotic gradient across the epidermis, causing release of a mast cell-activating factor; or (c) water dissolves a sebaceous gland secretion that penetrates into the dermis and activates mast cells. Importantly, internal water exposure (drinking water) does not trigger symptoms — the reaction requires external skin contact.</p>
+
+<p>Diagnosis is confirmed by the water challenge test: a water-soaked compress at body temperature (35°C) is applied to the upper body for 20 to 30 minutes. A positive test produces characteristic small wheals at the application site. It is critical to perform separate cold and heat provocation testing to exclude cold or heat urticaria masquerading as aquagenic sensitivity.</p>
+
+<p><strong>Treatment</strong> is antihistamine-based, with the same escalation approach used across physical urticarias. Barrier creams (petrolatum-based) applied before water exposure can reduce skin contact. UVB phototherapy and omalizumab have been reported effective in individual cases. Practical advice includes keeping showers short and lukewarm, applying barrier cream before bathing, and having antihistamines on board before planned water exposure.</p>
+
+<h3>Heat Urticaria (Localized Heat Contact Urticaria)</h3>
+
+<p>Heat urticaria — distinct from cholinergic urticaria — is triggered by direct contact with warm objects or warm air applied locally to the skin. Cholinergic urticaria involves a rise in core body temperature triggering widespread tiny hives; heat urticaria involves localized heat contact producing wheals only at the contact site. A warm mug, a heating pad, a hot car steering wheel, or direct sunlight warming the skin can provoke it.</p>
+
+<p>The hives appear within minutes of heat contact at the heated skin area, typically at temperatures above 40°C (104°F), and resolve within one to three hours. The threshold temperature varies between patients.</p>
+
+<p>This is a rare condition and is often confused with or overlaps cholinergic urticaria. Diagnosis involves a heat provocation test: a test tube filled with warm water (44°C) is applied to the forearm for five minutes, and the site is observed for wheal formation.</p>
+
+<p><strong>Treatment</strong> parallels the standard approach: antihistamines, avoidance of direct heat contact where feasible, and omalizumab for refractory cases.</p>
+
+<h3>Exercise-Induced Urticaria and Anaphylaxis</h3>
+
+<p>Exercise-induced urticaria produces large (10–15 mm) wheals during or shortly after vigorous physical activity, distinct from the small micropapular hives of cholinergic urticaria. In approximately 50 percent of cases, exercise-induced urticaria can progress to exercise-induced anaphylaxis (EIA), with hypotension, airway compromise, and loss of consciousness.</p>
+
+<p>There are two forms. Non-food-dependent EIA occurs with exercise alone. Food-dependent exercise-induced anaphylaxis (FDEIA) occurs only when a specific food (most commonly wheat, shellfish, or celery) is consumed within two to six hours before exercise — neither the food nor the exercise alone triggers a reaction, but the combination does. FDEIA is a trap: the patient may have eaten the trigger food hundreds of times without issue, and exercised hundreds of times without issue, and has no reason to suspect that the combination is dangerous until it produces anaphylaxis.</p>
+
+<p><strong>Diagnosis</strong> requires a careful history correlating exercise with reactions, and in FDEIA, identifying the food co-trigger through skin testing, specific IgE, and supervised exercise challenge with and without the suspect food.</p>
+
+<p><strong>Treatment</strong> includes avoidance of the trigger food for four to six hours before exercise (in FDEIA), carrying an epinephrine auto-injector at all times, exercising with a buddy, and using pre-exercise antihistamines. Patients should stop exercising immediately at the first sign of flushing, itch, or hive formation.</p>
+
+<h3>The Overlap Problem: When You Have More Than One</h3>
+
+<p>Many patients with physical urticaria have more than one trigger. Delayed pressure urticaria overlaps with chronic spontaneous urticaria in 37 to 50 percent of cases. Cholinergic and cold urticaria can coexist. Dermatographic urticaria can accompany virtually any other form. Solar and heat urticaria can overlap.</p>
+
+<p>This matters because treatment that controls one physical urticaria may not control another. If you are on antihistamines for dermatographism and still getting hives from exercise, the exercise component may need separate attention. If you have cold urticaria and delayed pressure urticaria, the antihistamine dose needed to control both may be higher than for either alone.</p>
+
+<p>We approach overlapping physical urticarias by identifying each trigger individually, establishing the minimum effective treatment for each, and then combining therapies as needed. This is why a thorough provocation testing workup — checking for multiple physical triggers, not just the one you noticed first — is standard practice.</p>
+
+<div class="bottom-line">
+<strong>The Bottom Line</strong>
+The physical urticarias are a family of conditions in which everyday physical forces — pressure, vibration, light, water, heat, cold, friction, exercise — trigger mast cell activation in the skin. They share a common histamine pathway and respond to antihistamines as first-line therapy. Many patients have more than one trigger. Identifying all of your triggers through provocation testing allows us to build a comprehensive treatment plan rather than playing Whac-A-Mole with individual symptoms.
+</div>
+
+<div class="emergency">
+<strong>⚠ When to Seek Emergency Care</strong>
+Seek immediate medical attention or call 911 if during any physical urticaria episode you experience difficulty breathing, throat tightness or swelling, dizziness or fainting, rapid heartbeat, or a sense of impending collapse. Exercise-induced anaphylaxis, cold-water anaphylaxis, and severe solar urticaria can all produce life-threatening systemic reactions. Use your epinephrine auto-injector if prescribed, then call 911. Stop the triggering activity immediately.
+</div>
+
+<div class="references">
+<h3>References</h3>
+<ol>
+<li>Zuberbier T, et al. The international EAACI/GA²LEN/EuroGuiDerm/APAAACI guideline for urticaria. Allergy. 2022;77(3):734-766.</li>
+<li>Magerl M, et al. The definition, diagnostic testing, and management of chronic inducible urticarias. Allergy. 2016;71(6):780-802.</li>
+<li>Abajian M, et al. Physical urticarias and cholinergic urticaria. Immunol Allergy Clin North Am. 2014;34(1):73-88.</li>
+<li>Kolkhir P, et al. Urticaria. Nat Rev Dis Primers. 2022;8(1):61.</li>
+<li>Dice JP. Physical urticaria. Immunol Allergy Clin North Am. 2004;24(2):225-246.</li>
+<li>Barlow RJ, et al. Diagnosis and incidence of delayed pressure urticaria. J Am Acad Dermatol. 1993;29(6):954-958.</li>
+<li>Lawlor F, et al. Delayed pressure urticaria: objective evaluation. Br J Dermatol. 1989;120(3):403-408.</li>
+<li>Boyden SE, et al. Vibratory urticaria associated with a missense variant in ADGRE2. N Engl J Med. 2016;374(7):656-663.</li>
+<li>Beattie PE, et al. Characteristics and prognosis of idiopathic solar urticaria. Arch Dermatol. 2003;139(9):1149-1154.</li>
+<li>Maurer M, et al. How to approach chronic inducible urticaria. J Allergy Clin Immunol Pract. 2018;6(4):1119-1130.</li>
+<li>Pezzolo E, et al. Heat urticaria: a revision of published cases. Br J Dermatol. 2016;175(3):473-478.</li>
+<li>Sibbald RG, et al. Aquagenic urticaria: evidence of a cholinergic and histaminergic basis. Br J Dermatol. 1981;105(6):611-616.</li>
+<li>Feldweg AM. Exercise-induced anaphylaxis. Immunol Allergy Clin North Am. 2015;35(2):261-275.</li>
+<li>Christensen MJ, et al. Exercise-induced anaphylaxis: retrospective study. Clin Exp Allergy. 2019;49(11):1480-1487.</li>
+<li>Metz M, et al. Omalizumab is effective in symptomatic dermographism. J Allergy Clin Immunol. 2017;140(3):870-873.</li>
+<li>Maurer M, et al. Omalizumab in chronic inducible urticaria: a systematic review. J Allergy Clin Immunol. 2018;141(2):638-649.e1.</li>
+<li>Kozel MM, et al. Natural course of physical and chronic urticaria in 220 patients. J Am Acad Dermatol. 2001;45(3):387-391.</li>
+<li>Fukunaga A, et al. Cholinergic urticaria: epidemiology, physiopathology, new categorization. Clin Auton Res. 2018;28(1):103-113.</li>
+<li>Nakamizo S, et al. Cholinergic urticaria: pathogenesis-based categorization. J Eur Acad Dermatol Venereol. 2012;26(1):114-116.</li>
+<li>Bito T, et al. Pathogenesis of cholinergic urticaria in relation to sweating. Allergol Int. 2012;61(4):539-544.</li>
+</ol>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="copyright">© HadenHealth PLLC. For patient use only. Not for reproduction or redistribution without permission.</div>
+  <div>This handout is part of the Haden Allergy &amp; Immunology Patient Education Series.</div>
+  <div>For educational purposes only. Does not constitute medical advice. Always consult your physician before making changes to your treatment plan.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dermatographic Urticaria — Haden Allergy & Immunology</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B3A5C;
+    --blue: #2E75B6;
+    --gold: #C5A44E;
+    --gold-light: #F5ECD7;
+    --text: #2C2C2C;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+    --gray-light: #E8E8E4;
+    --emergency-red: #B22222;
+    --emergency-bg: #FFF5F5;
+    --bottomline-bg: #F0F4F8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--gold);
+  }
+  .site-header .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px; height: 48px;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+  .site-header h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.15rem;
+  }
+  .site-header .subtitle {
+    font-size: 0.78rem;
+    font-style: italic;
+    opacity: 0.85;
+    letter-spacing: 0.03em;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+  }
+
+  /* HANDOUT TITLE */
+  .handout-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--gold);
+  }
+  .handout-title h2 {
+    font-size: 1.8rem;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+    line-height: 1.25;
+  }
+  .handout-title .tagline {
+    font-style: italic;
+    color: var(--blue);
+    font-size: 1rem;
+  }
+
+  /* SECTION HEADINGS */
+  h3 {
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin: 2.2rem 0 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  /* SUBHEADINGS */
+  h4 {
+    font-size: 1rem;
+    color: var(--blue);
+    margin: 1.5rem 0 0.5rem;
+    font-style: italic;
+  }
+
+  /* PARAGRAPHS */
+  p {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  /* BOLD LEAD-INS */
+  strong {
+    color: var(--navy);
+  }
+
+  /* TREATMENT STEPS */
+  .treatment-step {
+    margin: 0.8rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--gold);
+  }
+  .treatment-step p { margin-bottom: 0.5rem; }
+
+  /* PRACTICAL LIST */
+  .practical-item {
+    margin: 0.6rem 0;
+    padding: 0.5rem 0.8rem;
+    background: var(--gold-light);
+    border-radius: 4px;
+  }
+
+  /* BOTTOM LINE BOX */
+  .bottom-line {
+    background: var(--bottomline-bg);
+    border-left: 4px solid var(--navy);
+    padding: 1.2rem 1.5rem;
+    margin: 2.2rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+  }
+  .bottom-line strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--navy);
+  }
+
+  /* EMERGENCY BOX */
+  .emergency {
+    background: var(--emergency-bg);
+    border: 2px solid var(--emergency-red);
+    border-radius: 6px;
+    padding: 1.2rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .emergency strong {
+    color: var(--emergency-red);
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* REFERENCES */
+  .references {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--gold);
+  }
+  .references h3 {
+    border-bottom: none;
+    margin-bottom: 0.6rem;
+  }
+  .references ol {
+    padding-left: 1.5rem;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: #555;
+  }
+  .references li {
+    margin-bottom: 0.35rem;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.7rem;
+    line-height: 1.6;
+    border-top: 4px solid var(--gold);
+  }
+  .site-footer .copyright {
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    font-size: 0.72rem;
+  }
+
+  /* PRINT */
+  @media print {
+    .site-header, .site-footer { break-inside: avoid; }
+    body { font-size: 11pt; background: white; }
+    .content { max-width: 100%; padding: 0.5in; }
+    .emergency { border-width: 2pt; }
+    a { color: var(--navy); text-decoration: none; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    html { font-size: 16px; }
+    .content { padding: 1.5rem 1rem 2rem; }
+    .handout-title h2 { font-size: 1.5rem; }
+    .site-header { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo-mark">H</div>
+  <h1>Haden Allergy &amp; Immunology</h1>
+  <div class="subtitle">Patient Education Series</div>
+</header>
+
+<main class="content">
+
+<div class="handout-title">
+  <h2>Dermatographic Urticaria</h2>
+  <div class="tagline">Your Skin Has Opinions About Being Touched</div>
+</div>
+
+<h3>The Condition That Writes Itself</h3>
+
+<p>There is a test we sometimes perform in the office that looks less like medicine and more like a parlor trick. We take a blunt instrument — often just a tongue depressor — and draw a line firmly across your forearm. We wait. Within two to five minutes, the line rises from the skin as if written by an invisible calligrapher: a raised, red, itchy welt tracing the exact path of the stroke. We have literally written on your skin, and your skin has written back.</p>
+
+<p>This is dermatographic urticaria — also known as dermatographism, dermographism, or "skin writing" — and it is the single most common form of physical urticaria, affecting an estimated 2 to 5 percent of the general population. That makes it roughly ten times more common than cold urticaria and fifty times more common than solar urticaria. It is so prevalent, in fact, that many people who have it do not realize it is a diagnosable condition. They have simply learned that scratching their skin makes it welt up, filed this under "weird thing my body does," and moved on.</p>
+
+<p>For some people, that casual acceptance is entirely appropriate — mild dermatographism is a nuisance, not a disease. But for others, the condition is severe enough to produce spontaneous itching, hives from ordinary contact with clothing and bedding, and a quality-of-life impact that is anything but trivial. This handout is for the latter group: those whose skin's opinions about being touched have become loud enough to require management.</p>
+
+<h3>What Is Happening in Your Skin</h3>
+
+<p>Dermatographic urticaria is a mast cell hypersensitivity to shearing forces. When the skin is stroked, scratched, rubbed, or subjected to friction, the mechanical force disrupts dermal mast cells, causing them to release histamine and other inflammatory mediators into the surrounding tissue. This produces the classic triple response of Lewis: local redness (from arteriolar dilation), a surrounding flare (from axon reflex vasodilation), and a wheal (from fluid leaking out of dilated capillaries into the tissue).</p>
+
+<p>In most people, this response requires substantial force — a hard scratch, a significant impact. In dermatographic urticaria, the threshold is lowered. Ordinary forces that healthy skin ignores — the seam of a shirt, the band of a watch, a towel rubbed briskly after a shower, the elastic of underwear, the strap of a seatbelt, resting your chin on your hand — are sufficient to trigger mast cell degranulation and wheal formation.</p>
+
+<p>The mechanism by which mechanical force triggers degranulation is not fully understood. The leading hypothesis involves mechanosensitive ion channels on mast cell membranes that open in response to shearing stress, allowing calcium influx and initiating the degranulation cascade. There may also be an IgE-mediated component in some patients — certain studies have found that passive transfer of serum from dermatographic patients to non-dermatographic recipients can temporarily confer the trait, suggesting a circulating factor rather than purely structural mast cell hypersensitivity.</p>
+
+<h3>The Subtypes: Not All Dermatographism Is the Same</h3>
+
+<p><strong>Simple (physiologic) dermatographism</strong> is the mildest form. Firm stroking produces a wheal, but there is minimal or no itch, and the response does not cause spontaneous symptoms. This is present in approximately 5 percent of the population and is generally considered a normal variant rather than a disease.</p>
+
+<p><strong>Symptomatic dermatographism</strong> is the clinical condition. Wheals are easily provoked by light friction, are accompanied by significant pruritus, and occur spontaneously during daily activities. This is what brings patients to our office, and this is what requires treatment.</p>
+
+<p><strong>Delayed dermatographism</strong> is uncommon and produces wheals three to eight hours after the mechanical stimulus, often persisting for 24 to 48 hours. It can occur alone or in combination with the immediate form.</p>
+
+<p><strong>Red dermatographism</strong> (also called cholinergic dermatographism) produces small, punctate, folliculocentric wheals rather than the linear wheals of classic dermatographism. It may overlap with cholinergic urticaria and is sometimes triggered by friction combined with heat.</p>
+
+<h3>Diagnosis: The Simplest Test in Allergy</h3>
+
+<p>The diagnosis of dermatographic urticaria is clinical and requires no laboratory testing. We stroke the skin of the forearm or back with a standardized instrument (a dermographometer or a tongue depressor applied with firm pressure) and observe for wheal formation within two to five minutes.</p>
+
+<p>A positive test shows a raised wheal along the stroke line that persists for at least ten minutes and is accompanied by itch. No blood work is required for diagnosis. However, if dermatographism appears abruptly in an adult who never had it before, we may check thyroid function, complete blood count, and inflammatory markers to screen for associated conditions.</p>
+
+<h3>Treatment: Controlling the Conversation</h3>
+
+<div class="treatment-step">
+<p><strong>Step 1: Daily second-generation antihistamines.</strong> Cetirizine, levocetirizine, fexofenadine, loratadine, or desloratadine at standard doses. This controls symptoms in roughly 50 to 70 percent of patients. If standard dosing is insufficient, escalation up to four times the standard dose is guideline-recommended.</p>
+</div>
+
+<div class="treatment-step">
+<p><strong>Step 2: Add-on therapies.</strong> Famotidine for additional histamine blockade. Montelukast for modest additive benefit. Hydroxyzine at bedtime for sleep-disrupting dermatographism.</p>
+</div>
+
+<div class="treatment-step">
+<p><strong>Step 3: Omalizumab (Xolair).</strong> For refractory symptomatic dermatographism, omalizumab has been shown effective in a randomized, placebo-controlled trial — one of the few physical urticarias with this level of evidence.</p>
+</div>
+
+<div class="treatment-step">
+<p><strong>Step 4: Additional options.</strong> Cyclosporine, narrowband UVB phototherapy, and ketotifen for patients who fail Steps 1 through 3.</p>
+</div>
+
+<h3>Living With It: The Practical Details</h3>
+
+<div class="practical-item">
+<p><strong>Clothing.</strong> Loose-fitting garments in soft, natural fabrics. Remove tags. Avoid tight waistbands, rough wool, and prominent seams.</p>
+</div>
+
+<div class="practical-item">
+<p><strong>Bathing.</strong> Lukewarm water, gentle cleansers, soft washcloths or hands. Pat dry. Apply fragrance-free moisturizer immediately.</p>
+</div>
+
+<div class="practical-item">
+<p><strong>Sleep.</strong> Soft, smooth bedding. Nighttime antihistamines if needed. Short fingernails reduce inadvertent trauma during sleep.</p>
+</div>
+
+<div class="practical-item">
+<p><strong>Stress.</strong> Emotional stress lowers the mast cell degranulation threshold through substance P and neuropeptide release. Stress management is a legitimate treatment adjunct.</p>
+</div>
+
+<h3>Natural History</h3>
+
+<p>The median duration of symptomatic dermatographism is approximately two to five years. Roughly 36 percent of patients achieve complete remission within five years, and the majority experience at least partial improvement. A subset of 20 to 25 percent will have persistent symptoms beyond ten years.</p>
+
+<div class="bottom-line">
+<strong>The Bottom Line</strong>
+Dermatographic urticaria is the most common physical urticaria, affecting 2 to 5 percent of the population. Your skin's mast cells are hypersensitive to mechanical force. Treatment with antihistamines is effective in the majority of patients, omalizumab is available for refractory cases, and the condition typically improves over years.
+</div>
+
+<div class="emergency">
+<strong>⚠ When to Seek Emergency Care</strong>
+While dermatographic urticaria alone very rarely causes systemic reactions, seek immediate medical attention if you develop difficulty breathing, throat tightness, dizziness, or generalized swelling beyond the area of skin contact. Use your epinephrine auto-injector if prescribed, then call 911.
+</div>
+
+<div class="references">
+<h3>References</h3>
+<ol>
+<li>Zuberbier T, et al. The international EAACI/GA²LEN/EuroGuiDerm/APAAACI guideline for urticaria. Allergy. 2022;77(3):734-766.</li>
+<li>Metz M, et al. Omalizumab is effective in symptomatic dermographism. J Allergy Clin Immunol. 2017;140(3):870-873.e1.</li>
+<li>Taskapan O, et al. Evaluation of autologous serum skin test results. Clin Exp Dermatol. 2008;33(6):754-758.</li>
+<li>Kolkhir P, et al. Urticaria. Nat Rev Dis Primers. 2022;8(1):61.</li>
+<li>Dice JP. Physical urticaria. Immunol Allergy Clin North Am. 2004;24(2):225-246.</li>
+<li>Abajian M, et al. Physical urticarias and cholinergic urticaria. Immunol Allergy Clin North Am. 2014;34(1):73-88.</li>
+<li>Magerl M, et al. Chronic inducible urticarias consensus recommendations. Allergy. 2016;71(6):780-802.</li>
+<li>Kozel MM, et al. Natural course of physical and chronic urticaria. J Am Acad Dermatol. 2001;45(3):387-391.</li>
+<li>Schoepke N, et al. Symptomatic dermographism: an inadequately described disease. J Eur Acad Dermatol Venereol. 2015;29(4):708-712.</li>
+<li>Maurer M, et al. How to approach chronic inducible urticaria. J Allergy Clin Immunol Pract. 2018;6(4):1119-1130.</li>
+<li>Maurer M, et al. Omalizumab in chronic inducible urticaria: systematic review. J Allergy Clin Immunol. 2018;141(2):638-649.e1.</li>
+<li>Breathnach SM, et al. Symptomatic dermographism: natural history and response to therapy. Clin Exp Dermatol. 1983;8(5):463-476.</li>
+<li>Bito T, et al. Pathogenesis of cholinergic urticaria. Allergol Int. 2012;61(4):539-544.</li>
+<li>Silpa-archa N, et al. Physical urticaria: prevalence, type and natural course. J Eur Acad Dermatol Venereol. 2011;25(10):1194-1199.</li>
+<li>Steinberg JB, et al. Dermographism: prevalence and clinical significance. J Am Acad Dermatol. 1979;1(1):23-27.</li>
+<li>Kaplan AP. Chronic spontaneous urticaria: pathogenesis and treatment. Allergy. 2017;72(2):218-228.</li>
+<li>Grattan CE, Humphreys F. Guidelines for evaluation and management of urticaria. Br J Dermatol. 2007;157(6):1116-1123.</li>
+<li>Sharpe GR, Shuster S. H2 receptor antagonists in dermographic urticaria. Br J Dermatol. 1993;129(5):575-578.</li>
+<li>Mlynek A, et al. A novel instrument for assessing provocation threshold levels. Clin Exp Dermatol. 2013;38(4):360-366.</li>
+<li>Fukunaga A, et al. Cholinergic urticaria: epidemiology, physiopathology, new categorization. Clin Auton Res. 2018;28(1):103-113.</li>
+</ol>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="copyright">© HadenHealth PLLC. For patient use only. Not for reproduction or redistribution without permission.</div>
+  <div>This handout is part of the Haden Allergy &amp; Immunology Patient Education Series.</div>
+  <div>For educational purposes only. Does not constitute medical advice. Always consult your physician before making changes to your treatment plan.</div>
+</footer>
+
+</body>
+</html>
