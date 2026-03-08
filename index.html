@@ -537,8 +537,10 @@
       </ul>
       <p style="margin-top:10px;font-size:0.85rem;opacity:0.9;">Use an epinephrine auto-injector (EpiPen) if you have one, then call 911. Do not wait.</p>
     </div>
-    <div class="section-divider">Information prepared for you</div>
+    <div class="section-divider">Recommended for you</div>
     <div id="handoutContainer"></div>
+    <div class="section-divider">Browse all handouts</div>
+    <div id="allHandoutsContainer"></div>
     <div class="summary-card">
       <h3>&#128203; Clinical Summary — For Your Chart</h3>
       <div id="clinSummary"></div>
@@ -556,21 +558,27 @@ const A = {};
 let flow = 'hives_only';
 const hist = ['screen-intro'];
 
+const BASE = 'content/handouts/';
 const HANDOUTS = {
-  urticaria_angioedema_foundational: { title: "Understanding Hives and Angioedema", desc: "A comprehensive guide to what hives are, why they happen, and what to expect from evaluation and treatment.", tag: "Foundation" },
-  autoimmune_urticaria: { title: "Autoimmune Urticaria", desc: "About the connection between your immune system and chronic hives — including the role of antibodies and thyroid disease.", tag: "Chronic Hives" },
-  cholinergic_urticaria: { title: "Cholinergic Urticaria", desc: "Small, intensely itchy hives triggered by heat, exercise, or emotional stress. Why they happen and how to manage them.", tag: "Physical Urticaria" },
-  cold_urticaria: { title: "Cold Urticaria", desc: "Hives and swelling triggered by cold temperatures. Includes safety information for swimming and cold exposure.", tag: "Physical Urticaria" },
-  solar_urticaria: { title: "Solar Urticaria", desc: "Hives triggered by sunlight. Explains the action spectrum and protective strategies.", tag: "Physical Urticaria" },
-  physical_urticarias_umbrella: { title: "Physical Urticarias — Overview", desc: "When physical triggers cause hives: heat, cold, pressure, vibration, sunlight, and water. Many patients have more than one.", tag: "Physical Urticaria" },
-  dermatographic_urticaria: { title: "Dermatographic Urticaria", desc: "When scratching or pressure causes raised welts. The most common physical urticaria — and often the least recognized.", tag: "Physical Urticaria" },
-  hives_and_stress: { title: "Hives and Stress", desc: "The science behind why stress makes hives worse — and what you can actually do about it.", tag: "Triggers" },
-  dermatitis_vs_urticaria: { title: "Hives vs. Rash — What's the Difference?", desc: "Understanding when itchy skin is hives and when it might be something else entirely.", tag: "Diagnosis" },
-  urticaria_pigmentosa: { title: "Urticaria Pigmentosa and Mastocytosis", desc: "About darkly pigmented skin lesions and their connection to mast cell conditions.", tag: "Mast Cell" },
-  mcas_vs_csu: { title: "MCAS vs. Chronic Spontaneous Urticaria", desc: "When hives are part of a larger picture involving multiple organ systems.", tag: "Mast Cell" },
-  hives_in_kids: { title: "Hives in Children", desc: "An age-by-age guide to hives in pediatric patients — triggers, patterns, and what parents need to know.", tag: "Pediatric" },
-  pregnancy_hives_mast_cell: { title: "Pregnancy, Hives, and Mast Cell Disease", desc: "Managing hives and mast cell conditions during pregnancy.", tag: "Special Populations" },
-  covid_urticaria: { title: "Viral Infections and Hives", desc: "How viral infections — including COVID-19 and strep — can trigger or unmask chronic hives.", tag: "Post-Infectious" }
+  urticaria_angioedema_foundational: { title: "Understanding Hives and Angioedema", desc: "A comprehensive guide to what hives are, why they happen, and what to expect from evaluation and treatment.", tag: "Foundation", url: BASE+"urticaria_angioedema_foundational.html" },
+  autoimmune_urticaria: { title: "Autoimmune Urticaria", desc: "About the connection between your immune system and chronic hives — including the role of antibodies and thyroid disease.", tag: "Chronic Hives", url: BASE+"autoimmune_urticaria.html" },
+  cholinergic_urticaria: { title: "Cholinergic Urticaria", desc: "Small, intensely itchy hives triggered by heat, exercise, or emotional stress. Why they happen and how to manage them.", tag: "Physical Urticaria", url: BASE+"cholinergic_urticaria.html" },
+  cold_urticaria: { title: "Cold Urticaria", desc: "Hives and swelling triggered by cold temperatures. Includes safety information for swimming and cold exposure.", tag: "Physical Urticaria", url: BASE+"cold_urticaria.html" },
+  solar_urticaria: { title: "Solar Urticaria", desc: "Hives triggered by sunlight. Explains the action spectrum and protective strategies.", tag: "Physical Urticaria", url: BASE+"solar_urticaria.html" },
+  physical_urticarias_umbrella: { title: "Physical Urticarias — Overview", desc: "When physical triggers cause hives: heat, cold, pressure, vibration, sunlight, and water. Many patients have more than one.", tag: "Physical Urticaria", url: BASE+"physical_urticarias_umbrella.html" },
+  dermatographic_urticaria: { title: "Dermatographic Urticaria", desc: "When scratching or pressure causes raised welts. The most common physical urticaria — and often the least recognized.", tag: "Physical Urticaria", url: BASE+"dermatographic_urticaria.html" },
+  hives_and_hormones: { title: "Hives and Hormones", desc: "How hormonal changes — menstrual cycles, pregnancy, menopause, and thyroid conditions — can trigger or worsen chronic hives.", tag: "Triggers", url: BASE+"hives_and_hormones.html" },
+  hives_and_stress: { title: "Hives and Stress", desc: "The science behind why stress makes hives worse — and what you can actually do about it.", tag: "Triggers", url: BASE+"hives_and_stress.html" },
+  dermatitis_vs_urticaria: { title: "Hives vs. Rash — What's the Difference?", desc: "Understanding when itchy skin is hives and when it might be something else entirely.", tag: "Diagnosis", url: BASE+"dermatitis_vs_urticaria.html" },
+  understanding_your_rash: { title: "Understanding Your Rash", desc: "Why the old division between allergic and autoimmune disease is giving way to a spectrum — and what that means for your treatment.", tag: "Philosophy", url: BASE+"understanding_your_rash.html" },
+  urticaria_pigmentosa: { title: "Urticaria Pigmentosa and Mastocytosis", desc: "About darkly pigmented skin lesions and their connection to mast cell conditions.", tag: "Mast Cell", url: BASE+"urticaria_pigmentosa.html" },
+  mcas_vs_csu: { title: "MCAS vs. Chronic Spontaneous Urticaria", desc: "When hives are part of a larger picture involving multiple organ systems.", tag: "Mast Cell", url: BASE+"mcas_vs_csu.html" },
+  hives_in_kids: { title: "Hives in Children", desc: "An age-by-age guide to hives in pediatric patients — triggers, patterns, and what parents need to know.", tag: "Pediatric", url: BASE+"hives_in_kids.html" },
+  pregnancy_hives_mast_cell: { title: "Pregnancy, Hives, and Mast Cell Disease", desc: "Managing hives and mast cell conditions during pregnancy.", tag: "Special Populations", url: BASE+"pregnancy_hives_mast_cell.html" },
+  covid19_urticaria: { title: "COVID-19 and Urticaria", desc: "How COVID-19 can trigger new-onset hives, worsen existing urticaria, and activate autoimmune pathways in the skin.", tag: "Post-Infectious", url: BASE+"covid19_urticaria.html" },
+  vertigo_dizziness: { title: "Vertigo and Dizziness", desc: "The allergy-vertigo connection — how allergic rhinitis and histamine affect your balance system.", tag: "Related Conditions", url: BASE+"vertigo_dizziness.html" },
+  shingles_skin: { title: "Shingles and Your Skin", desc: "When varicella-zoster reactivation triggers hives, secondary rashes, and lasting changes in your skin's immune environment.", tag: "Related Conditions", url: BASE+"shingles_skin.html" },
+  allergic_shiners: { title: "Allergic Shiners", desc: "Those dark circles under your eyes may not be from lack of sleep — they may be an allergy sign.", tag: "Related Conditions", url: BASE+"allergic_shiners.html" }
 };
 
 window.onload = () => {
@@ -652,10 +660,13 @@ function route(){
   if(chronic.includes(A.h_cur_dur)||A.h_fam==='yes'){s.add('autoimmune_urticaria');}
   if(A.h_expo==='yes'&&A.h_expo_txt){
     const d=A.h_expo_txt.toLowerCase();
-    if(['covid','infect','virus','sick','respiratory','cold','flu','strep','illness','throat','ear'].some(w=>d.includes(w))){s.add('covid_urticaria');}
+    if(['covid','infect','virus','sick','respiratory','cold','flu','strep','illness','throat','ear'].some(w=>d.includes(w))){s.add('covid19_urticaria');}
   }
   const physTrig=(A.h_agg||[]).filter(v=>['heat','cold','exercise','sun','water','pressure','vibration','shower'].includes(v));
   if(physTrig.length>=2){s.add('physical_urticarias_umbrella');}
+  if(chronic.includes(A.h_cur_dur)){s.add('hives_and_hormones');}
+  if(chronic.includes(A.h_cur_dur)||A.h_prior==='multiple'||A.h_prior==='years'){s.add('understanding_your_rash');}
+  if(A.h_expo==='yes'&&A.h_expo_txt){const d2=A.h_expo_txt.toLowerCase();if(['shingles','zoster','chicken','herpes','band'].some(w=>d2.includes(w))){s.add('shingles_skin');}}
   return Array.from(s);
 }
 
@@ -665,8 +676,11 @@ function renderResults(){
   document.getElementById('emergBanner').classList.toggle('visible',emergency);
   const handouts=route();
   const hc=document.getElementById('handoutContainer');
-  hc.innerHTML=handouts.map(k=>{const h=HANDOUTS[k];if(!h)return'';return '<div class="handout-card"><h4>'+h.title+'</h4><p>'+h.desc+'</p><span class="handout-tag">'+h.tag+'</span></div>';}).join('');
+  hc.innerHTML=handouts.map(k=>{const h=HANDOUTS[k];if(!h)return'';const link=h.url?'<a href="'+h.url+'" target="_blank" style="display:inline-block;margin-top:10px;color:var(--blue);font-size:0.88rem;font-weight:600;text-decoration:none;">Read Handout &#8594;</a>':'';return '<div class="handout-card"><h4>'+h.title+'</h4><p>'+h.desc+'</p>'+link+'<br><span class="handout-tag">'+h.tag+'</span></div>';}).join('');
   buildSummary();
+  const allC=document.getElementById('allHandoutsContainer');
+  const routed=new Set(handouts);
+  allC.innerHTML=Object.entries(HANDOUTS).filter(([k])=>!routed.has(k)).map(([k,h])=>'<div class="handout-card" style="border-left-color:var(--gold);opacity:0.85;"><h4>'+h.title+'</h4><p>'+h.desc+'</p>'+(h.url?'<a href="'+h.url+'" target="_blank" style="display:inline-block;margin-top:10px;color:var(--blue);font-size:0.88rem;font-weight:600;text-decoration:none;">Read Handout &#8594;</a>':'')+'<br><span class="handout-tag">'+h.tag+'</span></div>').join('');
   hist.push('screen-results');
   show('screen-results');
 }
