@@ -119,6 +119,91 @@
   </div>
 
   <!-- ENTRY -->
+  
+  <!-- TRIAGE PRE-SCREENER -->
+  <div class="screen" id="screen-triage">
+    <div class="section-header"><h3>Welcome</h3><p>Let\u2019s figure out the best resources for you</p></div>
+    <div class="question-card">
+      <div class="q-label">Getting Started</div>
+      <div class="q-text">Which best describes what\u2019s happening with your skin?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="radio" name="triage" value="hives"> Hives \u2014 raised, itchy welts that come and go (individual spots usually last minutes to hours)</label>
+        <label class="choice-item"><input type="radio" name="triage" value="swelling"> Swelling of the lips, face, eyes, hands, or throat \u2014 without hives</label>
+        <label class="choice-item"><input type="radio" name="triage" value="both"> Both hives and swelling</label>
+        <label class="choice-item"><input type="radio" name="triage" value="rash"> A rash that stays in one place \u2014 doesn\u2019t come and go within hours (may be scaly, blistery, dry, or weepy)</label>
+        <label class="choice-item"><input type="radio" name="triage" value="medrx"> I think this is a reaction to a medication I\u2019m taking</label>
+      </div>
+    </div>
+    <div class="question-card" id="triage-emergency-q">
+      <div class="q-label" style="color:#CC0000;font-weight:700">Safety Check</div>
+      <div class="q-text">Are you experiencing any of these <strong>right now</strong>?</div>
+      <div class="choices">
+        <label class="choice-item" style="border-color:#CC0000"><input type="checkbox" name="triage_emerg" value="breathing"> Difficulty breathing</label>
+        <label class="choice-item" style="border-color:#CC0000"><input type="checkbox" name="triage_emerg" value="throat"> Throat tightness or swelling</label>
+        <label class="choice-item" style="border-color:#CC0000"><input type="checkbox" name="triage_emerg" value="swallow"> Difficulty swallowing</label>
+        <label class="choice-item" style="border-color:#CC0000"><input type="checkbox" name="triage_emerg" value="dizzy"> Dizziness, lightheadedness, or fainting</label>
+        <label class="choice-item"><input type="checkbox" name="triage_emerg" value="none"> None of these</label>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-primary btn-next" onclick="fromTriage()">Continue &#8594;</button>
+    </div>
+  </div>
+
+  <!-- MEDICATION REACTION MINI-PATH -->
+  <div class="screen" id="screen-medrx">
+    <div class="section-header"><h3>Medication Reaction</h3><p>Help us narrow down what\u2019s happening</p></div>
+    <div class="question-card">
+      <div class="q-label">Medication \u2014 1</div>
+      <div class="q-text">What type of medication do you think caused the reaction?</div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="medrx_type" value="nsaid"> Pain reliever (ibuprofen, aspirin, naproxen, Advil, Motrin, Aleve)</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_type" value="acetaminophen"> Acetaminophen (Tylenol)</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_type" value="bp"> Blood pressure medication (lisinopril, enalapril, losartan, amlodipine, metoprolol, etc.)</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_type" value="antibiotic"> Antibiotic</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_type" value="other"> Other or not sure</label>
+      </div>
+    </div>
+    <div class="question-card">
+      <div class="q-label">Medication \u2014 2</div>
+      <div class="q-text">What happened? <em style="font-weight:400;color:var(--gray-600)">(check all that apply)</em></div>
+      <div class="choices">
+        <label class="choice-item"><input type="checkbox" name="medrx_sx" value="hives"> Hives (raised itchy welts)</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_sx" value="swelling"> Swelling (face, lips, tongue, throat, hands)</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_sx" value="rash"> Rash (flat, red, may be widespread)</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_sx" value="blisters"> Blisters or peeling skin</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_sx" value="fever"> Fever</label>
+        <label class="choice-item"><input type="checkbox" name="medrx_sx" value="breathing"> Difficulty breathing</label>
+      </div>
+    </div>
+    <div class="question-card">
+      <div class="q-label">Medication \u2014 3</div>
+      <div class="q-text">Name the specific medication(s) if you can:</div>
+      <textarea id="medrx_name_txt" rows="2" placeholder="e.g., ibuprofen 400mg, lisinopril 10mg"></textarea>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goBack()">&#8592; Back</button>
+      <button class="btn-primary btn-next" onclick="fromMedRx()">See Results &#8594;</button>
+    </div>
+  </div>
+
+  <!-- PERSISTENT RASH PLACEHOLDER -->
+  <div class="screen" id="screen-rash-placeholder">
+    <div class="section-header"><h3>Persistent Rash Assessment</h3><p>This module is under development</p></div>
+    <div class="question-card">
+      <div class="q-text" style="text-align:center;padding:24px 0">
+        <p style="font-size:1.1em;margin-bottom:16px">Our detailed rash assessment tool for persistent skin conditions (eczema, contact dermatitis, and other non-urticarial rashes) is coming soon.</p>
+        <p style="margin-bottom:16px">In the meantime, we\u2019ll start you with a handout that explains <strong>how to tell hives apart from other rashes</strong> \u2014 plus you can browse all available handouts below.</p>
+        <p style="color:var(--gray-600)">If your rash involves hives (raised welts that come and go), press Back and select the hives option instead.</p>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="goBack()">&#8592; Back</button>
+      <button class="btn-primary btn-next" onclick="showRashPlaceholderResults()">See Recommended Handout &#8594;</button>
+    </div>
+  </div>
+
+
   <div class="screen" id="screen-entry">
     <div class="section-header"><h3>About Your Symptoms</h3><p>Let's start with what brings you in today</p></div>
     <div class="question-card">
@@ -613,7 +698,76 @@ document.addEventListener('change',function(e){
   if(e.target.type==='checkbox'){ e.target.closest('.choice-item').classList.toggle('selected',e.target.checked); }
 });
 
-function startQ(){ hist.push('screen-entry'); show('screen-entry'); upProg(5,'About your symptoms'); }
+function startQ(){ hist.push('screen-triage'); show('screen-triage'); upProg(2,'Getting started'); }
+
+
+function fromTriage(){
+  const v=getRadio('triage');
+  if(!v){alert('Please select what best describes your symptoms.');return;}
+  A.triage=v;
+  const emerg=getChecked('triage_emerg');
+  A.triage_emerg=emerg;
+  /* Emergency override — go straight to results with anaphylaxis + emergency banner */
+  if(emerg.some(e=>['breathing','throat','swallow','dizzy'].includes(e))){
+    A.h_sys=emerg.filter(e=>e!=='none');
+    if(emerg.includes('throat')){A.s_loc=A.s_loc||[];A.s_loc.push('throat');}
+    if(emerg.includes('swallow')){A.s_sys=A.s_sys||[];A.s_sys.push('swallow');}
+    if(emerg.includes('breathing')){A.h_sys=A.h_sys||[];if(!A.h_sys.includes('breathing'))A.h_sys.push('breathing');}
+    collectSwelling();renderResults();return;
+  }
+  if(v==='hives'){
+    /* Pre-select hives_only on entry screen and go there */
+    hist.push('screen-entry');show('screen-entry');upProg(5,'About your symptoms');
+    setTimeout(function(){var r=document.querySelector('input[name="entry"][value="hives_only"]');if(r)r.checked=true;},50);
+    return;
+  }
+  if(v==='swelling'){
+    hist.push('screen-entry');show('screen-entry');upProg(5,'About your symptoms');
+    setTimeout(function(){var r=document.querySelector('input[name="entry"][value="swelling_only"]');if(r)r.checked=true;},50);
+    return;
+  }
+  if(v==='both'){
+    hist.push('screen-entry');show('screen-entry');upProg(5,'About your symptoms');
+    setTimeout(function(){var r=document.querySelector('input[name="entry"][value="both"]');if(r)r.checked=true;},50);
+    return;
+  }
+  if(v==='rash'){
+    hist.push('screen-rash-placeholder');show('screen-rash-placeholder');upProg(50,'Rash assessment');
+    return;
+  }
+  if(v==='medrx'){
+    hist.push('screen-medrx');show('screen-medrx');upProg(20,'Medication reaction');
+    return;
+  }
+}
+
+function fromMedRx(){
+  const types=getChecked('medrx_type');
+  const sx=getChecked('medrx_sx');
+  const medName=(document.getElementById('medrx_name_txt')||{}).value||'';
+  /* Build A fields so route() can work */
+  A.h_expo='yes';
+  A.h_expo_txt=medName;
+  /* Map medication types to exposure keywords for routing */
+  if(types.includes('nsaid'))A.h_expo_txt+=' nsaid ibuprofen aspirin';
+  if(types.includes('acetaminophen'))A.h_expo_txt+=' acetaminophen tylenol';
+  if(types.includes('bp'))A.h_expo_txt+=' blood pressure lisinopril ace inhibitor';
+  if(types.includes('antibiotic'))A.h_expo_txt+=' antibiotic medication reaction';
+  if(types.includes('other'))A.h_expo_txt+=' medication reaction';
+  /* Map symptoms */
+  if(sx.includes('swelling')){A.s_loc=A.s_loc||[];A.s_loc.push('face');}
+  if(sx.includes('breathing')){A.h_sys=A.h_sys||[];A.h_sys.push('breathing');}
+  if(sx.includes('blisters')||sx.includes('fever')){A.h_expo_txt+=' severe drug reaction';}
+  collectSwelling();renderResults();
+}
+
+function showRashPlaceholderResults(){
+  /* Pre-route the dermatitis_vs_urticaria handout as a "start here" resource */
+  /* This handout explicitly helps patients distinguish hives from persistent rashes */
+  A.h_lesion_dur='days';  /* triggers dermatitis_vs_urticaria in route() */
+  A.triage_rash=true;
+  collectSwelling();renderResults();
+}
 
 function fromEntry(){
   const v=getRadio('entry'); if(!v){alert('Please select what you are experiencing.');return;}
