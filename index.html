@@ -586,6 +586,8 @@ const HANDOUTS = {
   bp_medication_reactions: { title: "Blood Pressure Medication Reactions", desc: "ACE-inhibitor angioedema, sulfa cross-reactivity, beta-blocker epinephrine resistance, and other allergic reactions to common BP medications.", tag: "Drug Reactions", url: BASE+"bp_medication_reactions.html" },
   idiosyncratic_reactions: { title: "Idiosyncratic Medication Reactions", desc: "Unpredictable drug reactions that don't follow the usual allergic or pharmacologic rules — from drug fever to fixed drug eruption.", tag: "Drug Reactions", url: BASE+"idiosyncratic_medication_reactions.html" },
   sjs_ten_dress: { title: "SJS, TEN, and DRESS", desc: "Severe, potentially life-threatening drug reactions involving the skin — what they are, which medications cause them, and the role of genetic testing.", tag: "Drug Reactions", url: BASE+"sjs_ten_dress.html" }
+,
+  hae_hereditary_angioedema: { title: "Hereditary Angioedema (HAE)", desc: "A genetic condition causing dramatic swelling without hives — driven by bradykinin, not histamine. Diagnosis, treatment, and the newest prevention therapies.", tag: "Angioedema", url: BASE+"hae_hereditary_angioedema.html" }
 };
 
 window.onload = () => {
@@ -686,6 +688,14 @@ function route(){
   /* BP Medication Reactions: exposure text mentions BP med keywords */
   if(A.h_expo==='yes'&&A.h_expo_txt){const db=A.h_expo_txt.toLowerCase();if(['lisinopril','ace inhibitor','ace-inhibitor','blood pressure','bp med','losartan','enalapril','ramipril','amlodipine','hydrochlorothiazide','hctz','metoprolol','atenolol'].some(w=>db.includes(w))){s.add('bp_medication_reactions');}}
   /* Idiosyncratic + SJS/TEN/DRESS: Browse All only — no routing rules needed */
+  
+  /* --- HAE Routing (added by patch) --- */
+  /* HAE pattern: angioedema + family history of swelling */
+  if((A.s_loc||[]).length>0&&A.h_fam==='yes'){s.add('hae_hereditary_angioedema');}
+  /* HAE pattern: exposure text mentions HAE/hereditary keywords */
+  if(A.h_expo==='yes'&&A.h_expo_txt){const dh=A.h_expo_txt.toLowerCase();if(['hae','hereditary','swelling without hives','angioedema without hives','complement','c1 inhibitor','c1-inh','bradykinin'].some(w=>dh.includes(w))){s.add('hae_hereditary_angioedema');}}
+  /* HAE pattern: recurrent angioedema + abdominal symptoms + poor allergy med response */
+  if((A.s_loc||[]).length>0&&(A.h_sys||[]).includes('gi')){s.add('hae_hereditary_angioedema');}
   return Array.from(s);
 }
 
