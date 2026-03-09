@@ -579,6 +579,13 @@ const HANDOUTS = {
   vertigo_dizziness: { title: "Vertigo and Dizziness", desc: "The allergy-vertigo connection — how allergic rhinitis and histamine affect your balance system.", tag: "Related Conditions", url: BASE+"vertigo_dizziness.html" },
   shingles_skin: { title: "Shingles and Your Skin", desc: "When varicella-zoster reactivation triggers hives, secondary rashes, and lasting changes in your skin's immune environment.", tag: "Related Conditions", url: BASE+"shingles_skin.html" },
   allergic_shiners: { title: "Allergic Shiners", desc: "Those dark circles under your eyes may not be from lack of sleep — they may be an allergy sign.", tag: "Related Conditions", url: BASE+"allergic_shiners.html" }
+,
+  anaphylaxis: { title: "Anaphylaxis", desc: "A life-threatening allergic reaction — what it is, how to recognize it, and why epinephrine is the only first-line treatment.", tag: "Emergency", url: BASE+"anaphylaxis_2025_update.html" },
+  nsaids_acetaminophen: { title: "Understanding Reactions to NSAIDs and Acetaminophen", desc: "Why aspirin, ibuprofen, and other common pain relievers can trigger hives, swelling, and respiratory reactions — and what's safe to take instead.", tag: "Drug Reactions", url: BASE+"understanding_nsaids_acetaminophen.html" },
+  nsaids_angioedema: { title: "NSAIDs and Angioedema", desc: "When pain relievers cause dangerous swelling — the histamine and bradykinin pathways, risk factors, and how ACE inhibitors make it worse.", tag: "Drug Reactions", url: BASE+"nsaids_and_angioedema.html" },
+  bp_medication_reactions: { title: "Blood Pressure Medication Reactions", desc: "ACE-inhibitor angioedema, sulfa cross-reactivity, beta-blocker epinephrine resistance, and other allergic reactions to common BP medications.", tag: "Drug Reactions", url: BASE+"bp_medication_reactions.html" },
+  idiosyncratic_reactions: { title: "Idiosyncratic Medication Reactions", desc: "Unpredictable drug reactions that don't follow the usual allergic or pharmacologic rules — from drug fever to fixed drug eruption.", tag: "Drug Reactions", url: BASE+"idiosyncratic_medication_reactions.html" },
+  sjs_ten_dress: { title: "SJS, TEN, and DRESS", desc: "Severe, potentially life-threatening drug reactions involving the skin — what they are, which medications cause them, and the role of genetic testing.", tag: "Drug Reactions", url: BASE+"sjs_ten_dress.html" }
 };
 
 window.onload = () => {
@@ -667,6 +674,18 @@ function route(){
   if(chronic.includes(A.h_cur_dur)){s.add('hives_and_hormones');}
   if(chronic.includes(A.h_cur_dur)||A.h_prior==='multiple'||A.h_prior==='years'){s.add('understanding_your_rash');}
   if(A.h_expo==='yes'&&A.h_expo_txt){const d2=A.h_expo_txt.toLowerCase();if(['shingles','zoster','chicken','herpes','band'].some(w=>d2.includes(w))){s.add('shingles_skin');}}
+  
+  /* --- Drug Reaction Routing (added by patch) --- */
+  /* Anaphylaxis: emergency symptoms OR exposure text mentions anaphylaxis */
+  if(checkEmergency()){s.add('anaphylaxis');}
+  if(A.h_expo==='yes'&&A.h_expo_txt){const da=A.h_expo_txt.toLowerCase();if(da.includes('anaphylaxis')||da.includes('anaphylactic')){s.add('anaphylaxis');}}
+  /* NSAIDs & Acetaminophen: exposure text mentions NSAID-related keywords */
+  if(A.h_expo==='yes'&&A.h_expo_txt){const dn=A.h_expo_txt.toLowerCase();if(['nsaid','aspirin','ibuprofen','naproxen','advil','motrin','aleve','acetaminophen','tylenol'].some(w=>dn.includes(w))){s.add('nsaids_acetaminophen');}}
+  /* NSAIDs & Angioedema: swelling present + NSAID keywords in exposure */
+  if(A.h_expo==='yes'&&A.h_expo_txt&&(A.s_loc||[]).length>0){const dns=A.h_expo_txt.toLowerCase();if(['nsaid','aspirin','ibuprofen','naproxen','advil','motrin','aleve'].some(w=>dns.includes(w))){s.add('nsaids_angioedema');}}
+  /* BP Medication Reactions: exposure text mentions BP med keywords */
+  if(A.h_expo==='yes'&&A.h_expo_txt){const db=A.h_expo_txt.toLowerCase();if(['lisinopril','ace inhibitor','ace-inhibitor','blood pressure','bp med','losartan','enalapril','ramipril','amlodipine','hydrochlorothiazide','hctz','metoprolol','atenolol'].some(w=>db.includes(w))){s.add('bp_medication_reactions');}}
+  /* Idiosyncratic + SJS/TEN/DRESS: Browse All only — no routing rules needed */
   return Array.from(s);
 }
 
